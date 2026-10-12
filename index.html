@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adonis bolnica - Zakaži pregled kod specijaliste</title>
+<meta name="description" content="Adonis bolnica - privatna zdravstvena ustanova. Pregledi, dijagnostika i specijalisti bez dugog čekanja. Zakaži termin danas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #467c45;
+    --accent-dark: #325833;
+    --accent-light: #6a9a69;
+    --accent-soft: #eef4ee;
+    --accent-soft-2: #e0ebe0;
+    --accent-glow: rgba(70, 124, 69, 0.16);
+    --text: #1c211c;
+    --text-muted: rgba(28, 33, 28, 0.68);
+    --text-faint: rgba(28, 33, 28, 0.46);
+    --bg: #fbfbf9;
+    --white: #ffffff;
+    --border: rgba(70, 124, 69, 0.16);
+    --radius-btn: 10px;
+    --radius-card: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { color: inherit; text-decoration: none; }
+
+  ul { list-style: none; }
+
+  .wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+    letter-spacing: -0.5px;
+  }
+
+  h2 {
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    letter-spacing: -0.3px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    max-width: 65ch;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    margin-bottom: 16px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px 28px;
+    border-radius: var(--radius-btn);
+    font-weight: 600;
+    font-size: 0.98rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+  }
+  .btn-primary:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent-dark);
+    border-color: var(--accent);
+  }
+  .btn-outline:hover {
+    background: var(--accent-soft);
+  }
+
+  .btn-block { width: 100%; }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+  }
+
+  header.scrolled {
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(28,33,28,0.06), 0 12px 24px -16px rgba(28,33,28,0.12);
+    border-bottom-color: var(--border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--text);
+  }
+
+  .logo svg { flex-shrink: 0; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .nav-links a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--accent-dark); }
+
+  .nav-cta { display: flex; align-items: center; gap: 20px; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 8px;
+    padding-bottom: 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 14px 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu .btn { margin-top: 16px; }
+
+  @media (max-width: 991px) {
+    .nav-links, .nav-cta .btn, .nav-cta .phone-link { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* REVEAL */
+  .reveal {
+    transform: translateY(16px);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in-view { transform: translateY(0); }
+
+  /* HERO */
+  .hero {
+    padding-top: 72px;
+    padding-bottom: 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(70,124,69,0) 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero-text p {
+    font-size: 1.08rem;
+    margin-top: 22px;
+    margin-bottom: 34px;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .phone-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--accent-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .placeholder-img {
+    background: var(--accent-soft);
+    border: 1px dashed var(--accent-light);
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 24px;
+  }
+
+  .hero-image { height: 420px; }
+
+  .benefits-bar {
+    position: relative;
+    z-index: 1;
+    margin-top: 56px;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  .benefit-item svg { flex-shrink: 0; }
+
+  /* PAIN SECTION */
+  .pain {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .pain-inner {
+    max-width: 760px;
+  }
+
+  .pain p {
+    font-size: 1.15rem;
+    color: var(--text);
+    max-width: 70ch;
+    font-weight: 400;
+  }
+
+  /* SECTION COMMON */
+  section { padding-top: 96px; padding-bottom: 96px; }
+
+  .section-head {
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  .section-head p { font-size: 1.05rem; margin-top: 14px; }
+
+  .bg-soft { background: var(--accent-soft); }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 32px 28px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 24px 48px -32px rgba(28,33,28,0.22);
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+
+  .service-card h3 { margin-bottom: 10px; }
+  .service-card p { font-size: 0.95rem; margin-bottom: 18px; }
+
+  .service-link {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--accent-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .service-link svg { transition: transform 0.2s ease; }
+  .service-link:hover svg { transform: translateX(3px); }
+
+  .services-cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  /* PROCESS */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .process-step {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .step-number {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--accent);
+    opacity: 0.35;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .process-step h3 { margin-bottom: 10px; }
+  .process-step p { font-size: 0.95rem; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .about-image { height: 440px; }
+
+  .about-text p { font-size: 1.02rem; margin-bottom: 18px; }
+
+  .about-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .about-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  .about-list svg { flex-shrink: 0; margin-top: 2px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+
+  .contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin-top: 32px;
+  }
+
+  .contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .contact-info-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-info-item h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .contact-info-item p { font-size: 0.93rem; margin: 0; }
+
+  .map-placeholder {
+    height: 220px;
+    margin-top: 32px;
+  }
+
+  .contact-form-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 36px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-group { margin-bottom: 16px; }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  input, textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    background: var(--bg);
+    color: var(--text);
+    transition: border-color 0.2s ease;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  textarea { resize: vertical; min-height: 110px; }
+
+  .form-note {
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    margin-top: 14px;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    background: var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: "";
+    position: absolute;
+    bottom: -220px;
+    left: -120px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .final-cta h2, .final-cta p { color: var(--white); }
+  .final-cta p { margin: 0 auto; opacity: 0.92; }
+
+  .final-cta .btn-primary {
+    background: var(--white);
+    color: var(--accent-dark);
+    margin-top: 32px;
+  }
+  .final-cta .btn-primary:hover {
+    background: var(--accent-soft);
+  }
+
+  /* FOOTER */
+  footer {
+    padding-top: 56px;
+    padding-bottom: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand .logo { margin-bottom: 16px; }
+  .footer-brand p { font-size: 0.92rem; max-width: 36ch; }
+
+  .footer-col h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a { font-size: 0.93rem; color: var(--text-muted); }
+  .footer-col a:hover { color: var(--accent-dark); }
+
+  .footer-bottom {
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-image { height: 300px; order: -1; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-image { height: 300px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .wrap { padding-left: 20px; padding-right: 20px; }
+    section { padding-top: 64px; padding-bottom: 64px; }
+    .hero { padding-top: 48px; padding-bottom: 48px; }
+    .pain { padding-top: 56px; padding-bottom: 56px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; gap: 40px; }
+    .benefits-grid { grid-template-columns: 1fr; gap: 14px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; }
+    .contact-form-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav-inner">
+    <a href="#hero" class="logo">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="15.5" stroke="#467c45" stroke-width="2"/>
+        <path d="M17 10V24M10 17H24" stroke="#467c45" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Adonis bolnica
+    </a>
+    <nav class="nav-links">
+      <a href="#hero">Početna</a>
+      <a href="#usluge">Usluge</a>
+      <a href="#o-nama">O nama</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+381114001000" class="phone-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        011/ 400 100
+      </a>
+      <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otvori meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="wrap">
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#hero">Početna</a>
+      <a href="#usluge">Usluge</a>
+      <a href="#o-nama">O nama</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#kontakt" class="btn btn-primary btn-block">Zakaži pregled</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Adonis bolnica · Privatna zdravstvena ustanova</span>
+        <h1>Pregled kod specijaliste ove nedelje, ne za šest meseci</h1>
+        <p>Zakažeš termin i kažemo ti tačno kad dolaziš i kod kog lekara. Nalaz dobijaš odmah posle pregleda, bez čekanja u redu i bez trčanja od šaltera do šaltera.</p>
+        <div class="hero-cta-row">
+          <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
+          <a href="tel:+381114001000" class="phone-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            ili pozovi 011/ 400 100
+          </a>
+        </div>
+      </div>
+      <div class="placeholder-img hero-image" role="img" aria-label="Fotografija zgrade i ulaza u Adonis bolnicu">
+        FOTOGRAFIJA ZGRADE ADONIS BOLNICE
+      </div>
+    </div>
+
+    <div class="benefits-bar reveal">
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Termin u roku od 24h
+        </div>
+        <div class="benefit-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Specijalisti svih profila
+        </div>
+        <div class="benefit-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Nalaz odmah posle pregleda
+        </div>
+        <div class="benefit-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Parking ispred ulaza
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pain">
+  <div class="wrap">
+    <div class="pain-inner reveal">
+      <p>Znaš taj osećaj kad zakažeš pregled u državnoj bolnici i dobiješ termin za četiri meseca unapred. U međuvremenu simptom ne čeka, a ni tvoje strpljenje. U Adonis bolnici dolaziš na pregled ove nedelje, kod lekara koji ti posveti vreme koje ti treba, ne pet minuta između dva pacijenta.</p>
+    </div>
+  </div>
+</section>
+
+<section id="usluge" class="bg-soft">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Usluge</span>
+      <h2>Sve što ti treba, pod jednim krovom</h2>
+      <p>Od prvog pregleda do nalaza u ruci, rešavaš sve na jednoj adresi, bez slanja po gradu.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6a5 5 0 0 0 10 0V4"/><path d="M19 4v4"/><circle cx="19" cy="11" r="2.5"/></svg>
+        </div>
+        <h3>Internistički pregled</h3>
+        <p>Opšti pregled, provera krvne slike i osnovnih parametara. Polazna tačka kad ne znaš šta te tačno muči.</p>
+        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/><path d="M3 12h4l2-4 3 7 2-5h3"/></svg>
+        </div>
+        <h3>Kardiologija</h3>
+        <p>EKG, ultrazvuk srca i pregled kod kardiologa, za tegobe sa pritiskom, ritmom ili bolom u grudima.</p>
+        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/></svg>
+        </div>
+        <h3>Ginekologija i akušerstvo</h3>
+        <p>Redovna kontrola, ultrazvuk i praćenje trudnoće, sa lekarom koji ostaje isti od prvog do poslednjeg pregleda.</p>
+        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6a2.5 2.5 0 1 1 3 2.45V15a3 3 0 0 0 3 3h3.1"/><path d="M18 6a2.5 2.5 0 1 0-3 2.45V9"/><circle cx="18" cy="18" r="2.5"/></svg>
+        </div>
+        <h3>Ortopedija</h3>
+        <p>Pregled zglobova, kičme i povreda, sa rendgenom i ultrazvukom na licu mesta.</p>
+        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><line x1="12" y1="3.5" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="20.5" y2="12"/></svg>
+        </div>
+        <h3>Radiologija i ultrazvuk</h3>
+        <p>Snimanje i nalaz istog dana, bez slanja na drugu lokaciju i čekanja rezultata nedeljama.</p>
+        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v7.5L5 19a1.5 1.5 0 0 0 1.3 2.3h11.4A1.5 1.5 0 0 0 19 19l-5-8.5V3"/><line x1="8" y1="16" x2="16" y2="16"/></svg>
+        </div>
+        <h3>Laboratorijska dijagnostika</h3>
+        <p>Krv vadiš ujutru, nalaz čekaš do popodneva, ne danima kao u redovnom sistemu.</p>
+        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="services-cta reveal">
+      <a href="#kontakt" class="btn btn-primary">Zakaži pregled odmah</a>
+    </div>
+  </div>
+</section>
+
+<section id="proces">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kako ide zakazivanje</span>
+      <h2>Tri koraka do termina</h2>
+      <p>Bez čekanja u redu za uputnicu i bez nagađanja kad ćeš doći na red.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="step-number">01</div>
+        <h3>Javiš nam se</h3>
+        <p>Pozoveš nas ili ostaviš broj telefona kroz formu na sajtu. Traje manje od minuta.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">02</div>
+        <h3>Dobiješ termin za 24h</h3>
+        <p>Javimo ti tačan datum, vreme i ime lekara koji te prima, bez čekanja da sami proveravaš.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-number">03</div>
+        <h3>Dolaziš na pregled</h3>
+        <p>Nalaz i preporuku nosiš kući istog dana, spreman za sledeći korak, ako ti je potreban.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="o-nama" class="bg-soft">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="placeholder-img about-image reveal" role="img" aria-label="Fotografija tima lekara Adonis bolnice">
+        FOTOGRAFIJA TIMA LEKARA
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">O Adonis bolnici</span>
+        <h2>Zdravstvena nega kakvu bi poželeo sebi i porodici</h2>
+        <p>Adonis bolnica je privatna zdravstvena ustanova. Radimo preglede, dijagnostiku i manje hirurške intervencije pod jednim krovom.</p>
+        <p>Kod nas ne čekaš uputnicu ni red za red. Lekar koji te prima ima vremena da te sasluša i objasni ti nalaz, ne samo da ga potpiše i pošalje dalje.</p>
+        <ul class="about-list">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Lekari specijalisti sa dugogodišnjim iskustvom
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Termin u roku od 24 sata od poziva
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Nalaz i izveštaj odmah posle pregleda
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Savremena oprema za dijagnostiku na licu mesta
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kontakt</span>
+      <h2>Zakaži pregled danas</h2>
+      <p>Pozovi nas ili pošalji poruku. Javljamo se u roku od 24 sata sa tačnim terminom.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Telefon</h4>
+              <p>011/ 400 100 - radnim danima od 8 do 20h</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p>zakazivanje@adonisbolnica.rs</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Adresa</h4>
+              <p>Bolnica se nalazi u Beogradu, u blizini centra grada, sa parkingom ispred ulaza.</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+            </div>
+            <div>
+              <h4>Radno vreme</h4>
+              <p>Pon-pet 08-20h, subota 08-15h</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="placeholder-img map-placeholder" role="img" aria-label="Mapa sa lokacijom Adonis bolnice">
+          MAPA - LOKACIJA ADONIS BOLNICE
+        </div>
+      </div>
+
+      <div class="contact-form-card reveal">
+        <h3 style="margin-bottom: 24px; font-size: 1.3rem;">Pošalji zahtev za termin</h3>
+        <form action="#" method="post">
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="ime">Ime i prezime</label>
+              <input type="text" id="ime" name="ime" placeholder="Unesi ime i prezime" required>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="telefon">Telefon</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="06x xxx xxxx" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="ime@primer.com">
+          </div>
+          <div class="form-group">
+            <label for="poruka">Za koji pregled te zanima termin</label>
+            <textarea id="poruka" name="poruka" placeholder="Opiši ukratko šta te muči ili koji pregled ti treba"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Pošalji zahtev za termin</button>
+          <p class="form-note">Odgovaramo u roku od 24 sata sa predloženim terminom.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <div class="final-cta-inner reveal">
+      <h2>Ne čekaj da simptom postane problem</h2>
+      <p>Zakaži pregled danas i dobij termin kod specijaliste u roku od 24 sata, bez uputnica i bez redova.</p>
+      <a href="tel:+381114001000" class="btn btn-primary">Pozovi i zakaži termin</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="logo">
+          <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
+            <circle cx="17" cy="17" r="15.5" stroke="#467c45" stroke-width="2"/>
+            <path d="M17 10V24M10 17H24" stroke="#467c45" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Adonis bolnica
+        </a>
+        <p>Privatna zdravstvena ustanova u Beogradu. Pregledi, dijagnostika i specijalisti bez dugog čekanja.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Stranica</h4>
+        <ul>
+          <li><a href="#hero">Početna</a></li>
+          <li><a href="#usluge">Usluge</a></li>
+          <li><a href="#o-nama">O nama</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+381114001000">011/ 400 100</a></li>
+          <li><a href="mailto:zakazivanje@adonisbolnica.rs">zakazivanje@adonisbolnica.rs</a></li>
+          <li><a href="#kontakt">Beograd, Srbija</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Adonis bolnica. Sva prava zadržana.</span>
+      <span>Privatna zdravstvena ustanova</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  }
+</script>
+
+</body>
+</html>

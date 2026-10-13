@@ -1,1074 +1,1083 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="sr-Latn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adonis bolnica - Zakaži pregled kod specijaliste</title>
-<meta name="description" content="Adonis bolnica - privatna zdravstvena ustanova. Pregledi, dijagnostika i specijalisti bez dugog čekanja. Zakaži termin danas.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bolnica Adonis · Plastična, estetska i rekonstruktivna hirurgija · Beograd</title>
+<meta name="description" content="Bolnica za plastičnu, estetsku i rekonstruktivnu hirurgiju u Beogradu, Gundulićev venac 7. Hirurški i nehirurški estetski tretmani na jednom mestu. Zakažite konsultacije: 011 354 27 85.">
+<link rel="icon" href="assets/znak-a.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
-  :root {
-    --accent: #467c45;
-    --accent-dark: #325833;
-    --accent-light: #6a9a69;
-    --accent-soft: #eef4ee;
-    --accent-soft-2: #e0ebe0;
-    --accent-glow: rgba(70, 124, 69, 0.16);
-    --text: #1c211c;
-    --text-muted: rgba(28, 33, 28, 0.68);
-    --text-faint: rgba(28, 33, 28, 0.46);
-    --bg: #fbfbf9;
-    --white: #ffffff;
-    --border: rgba(70, 124, 69, 0.16);
-    --radius-btn: 10px;
-    --radius-card: 20px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    font-weight: 400;
-    line-height: 1.6;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  img { max-width: 100%; display: block; }
-
-  a { color: inherit; text-decoration: none; }
-
-  ul { list-style: none; }
-
-  .wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  h1, h2, h3, h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--text);
-  }
-
-  h1 {
-    font-weight: 800;
-    font-size: clamp(2.4rem, 4.6vw, 3.8rem);
-    letter-spacing: -0.5px;
-  }
-
-  h2 {
-    font-weight: 800;
-    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-    letter-spacing: -0.3px;
-  }
-
-  h3 {
-    font-weight: 700;
-    font-size: 1.15rem;
-  }
-
-  p {
-    color: var(--text-muted);
-    max-width: 65ch;
-  }
-
-  .eyebrow {
-    display: inline-block;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    color: var(--accent-dark);
-    margin-bottom: 16px;
-  }
-
-  /* BUTTONS */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 15px 28px;
-    border-radius: var(--radius-btn);
-    font-weight: 600;
-    font-size: 0.98rem;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--white);
-  }
-  .btn-primary:hover {
-    background: var(--accent-dark);
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--accent-dark);
-    border-color: var(--accent);
-  }
-  .btn-outline:hover {
-    background: var(--accent-soft);
-  }
-
-  .btn-block { width: 100%; }
-
-  /* HEADER */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--white);
-    border-bottom: 1px solid transparent;
-    transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
-  }
-
-  header.scrolled {
-    background: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 rgba(28,33,28,0.06), 0 12px 24px -16px rgba(28,33,28,0.12);
-    border-bottom-color: var(--border);
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 18px;
-    padding-bottom: 18px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--text);
-  }
-
-  .logo svg { flex-shrink: 0; }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-  }
-
-  .nav-links a {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--text);
-    transition: color 0.2s ease;
-    position: relative;
-  }
-  .nav-links a:hover { color: var(--accent-dark); }
-
-  .nav-cta { display: flex; align-items: center; gap: 20px; }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-  }
-  .hamburger span {
-    width: 24px;
-    height: 2px;
-    background: var(--text);
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.active span:nth-child(2) { opacity: 0; }
-  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    padding-top: 8px;
-    padding-bottom: 24px;
-    border-top: 1px solid var(--border);
-    margin-top: 8px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    padding: 14px 4px;
-    font-weight: 500;
-    font-size: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .mobile-menu .btn { margin-top: 16px; }
-
-  @media (max-width: 991px) {
-    .nav-links, .nav-cta .btn, .nav-cta .phone-link { display: none; }
-    .hamburger { display: flex; }
-  }
-
-  /* REVEAL */
-  .reveal {
-    transform: translateY(16px);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.in-view { transform: translateY(0); }
-
-  /* HERO */
-  .hero {
-    padding-top: 72px;
-    padding-bottom: 72px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -200px;
-    right: -150px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(70,124,69,0) 70%);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .hero-grid {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 56px;
-    align-items: center;
-  }
-
-  .hero-text p {
-    font-size: 1.08rem;
-    margin-top: 22px;
-    margin-bottom: 34px;
-  }
-
-  .hero-cta-row {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    flex-wrap: wrap;
-  }
-
-  .phone-link {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--accent-dark);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .placeholder-img {
-    background: var(--accent-soft);
-    border: 1px dashed var(--accent-light);
-    border-radius: var(--radius-card);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--accent-dark);
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    padding: 24px;
-  }
-
-  .hero-image { height: 420px; }
-
-  .benefits-bar {
-    position: relative;
-    z-index: 1;
-    margin-top: 56px;
-    padding-top: 28px;
-    padding-bottom: 28px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .benefit-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    font-size: 0.92rem;
-  }
-
-  .benefit-item svg { flex-shrink: 0; }
-
-  /* PAIN SECTION */
-  .pain {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-  .pain-inner {
-    max-width: 760px;
-  }
-
-  .pain p {
-    font-size: 1.15rem;
-    color: var(--text);
-    max-width: 70ch;
-    font-weight: 400;
-  }
-
-  /* SECTION COMMON */
-  section { padding-top: 96px; padding-bottom: 96px; }
-
-  .section-head {
-    max-width: 640px;
-    margin-bottom: 56px;
-  }
-
-  .section-head p { font-size: 1.05rem; margin-top: 14px; }
-
-  .bg-soft { background: var(--accent-soft); }
-
-  /* SERVICES */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .service-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    padding: 32px 28px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-  }
-
-  .service-card:hover {
-    box-shadow: 0 24px 48px -32px rgba(28,33,28,0.22);
-    transform: translateY(-4px);
-  }
-
-  .service-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    background: var(--accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-  }
-
-  .service-card h3 { margin-bottom: 10px; }
-  .service-card p { font-size: 0.95rem; margin-bottom: 18px; }
-
-  .service-link {
-    font-weight: 600;
-    font-size: 0.88rem;
-    color: var(--accent-dark);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .service-link svg { transition: transform 0.2s ease; }
-  .service-link:hover svg { transform: translateX(3px); }
-
-  .services-cta {
-    margin-top: 48px;
-    text-align: center;
-  }
-
-  /* PROCESS */
-  .process-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-
-  .process-step {
-    position: relative;
-    padding-left: 0;
-  }
-
-  .step-number {
-    font-size: 2.6rem;
-    font-weight: 800;
-    color: var(--accent);
-    opacity: 0.35;
-    margin-bottom: 12px;
-    line-height: 1;
-  }
-
-  .process-step h3 { margin-bottom: 10px; }
-  .process-step p { font-size: 0.95rem; }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 64px;
-    align-items: center;
-  }
-
-  .about-image { height: 440px; }
-
-  .about-text p { font-size: 1.02rem; margin-bottom: 18px; }
-
-  .about-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 28px;
-  }
-
-  .about-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-weight: 600;
-    font-size: 0.98rem;
-  }
-
-  .about-list svg { flex-shrink: 0; margin-top: 2px; }
-
-  /* CONTACT */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-  }
-
-  .contact-info-list {
-    display: flex;
-    flex-direction: column;
-    gap: 26px;
-    margin-top: 32px;
-  }
-
-  .contact-info-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .contact-info-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--accent-soft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .contact-info-item h4 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-
-  .contact-info-item p { font-size: 0.93rem; margin: 0; }
-
-  .map-placeholder {
-    height: 220px;
-    margin-top: 32px;
-  }
-
-  .contact-form-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    padding: 36px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .form-group { margin-bottom: 16px; }
-
-  label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text);
-  }
-
-  input, textarea {
-    width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    background: var(--bg);
-    color: var(--text);
-    transition: border-color 0.2s ease;
-  }
-
-  input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
-  textarea { resize: vertical; min-height: 110px; }
-
-  .form-note {
-    font-size: 0.82rem;
-    color: var(--text-faint);
-    margin-top: 14px;
-  }
-
-  /* FINAL CTA */
-  .final-cta {
-    background: var(--accent);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .final-cta::before {
-    content: "";
-    position: absolute;
-    bottom: -220px;
-    left: -120px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-    pointer-events: none;
-  }
-
-  .final-cta-inner {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .final-cta h2, .final-cta p { color: var(--white); }
-  .final-cta p { margin: 0 auto; opacity: 0.92; }
-
-  .final-cta .btn-primary {
-    background: var(--white);
-    color: var(--accent-dark);
-    margin-top: 32px;
-  }
-  .final-cta .btn-primary:hover {
-    background: var(--accent-soft);
-  }
-
-  /* FOOTER */
-  footer {
-    padding-top: 56px;
-    padding-bottom: 40px;
-    border-top: 1px solid var(--border);
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-
-  .footer-brand .logo { margin-bottom: 16px; }
-  .footer-brand p { font-size: 0.92rem; max-width: 36ch; }
-
-  .footer-col h4 {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-bottom: 16px;
-  }
-
-  .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-  .footer-col a { font-size: 0.93rem; color: var(--text-muted); }
-  .footer-col a:hover { color: var(--accent-dark); }
-
-  .footer-bottom {
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-size: 0.82rem;
-    color: var(--text-faint);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-image { height: 300px; order: -1; }
-    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-image { height: 300px; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 768px) {
-    .wrap { padding-left: 20px; padding-right: 20px; }
-    section { padding-top: 64px; padding-bottom: 64px; }
-    .hero { padding-top: 48px; padding-bottom: 48px; }
-    .pain { padding-top: 56px; padding-bottom: 56px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .process-grid { grid-template-columns: 1fr; gap: 40px; }
-    .benefits-grid { grid-template-columns: 1fr; gap: 14px; }
-    .form-row { grid-template-columns: 1fr; gap: 0; }
-    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-    .footer-bottom { flex-direction: column; }
-    .contact-form-card { padding: 24px; }
-  }
+:root{
+  --bg:#f7f4ef; --paper:#ffffff; --sand:#efe8de; --ink:#16181a; --ink-2:#3d3b39; --muted:#66615c;
+  --line:#e3dcd2; --bronze:#7e5e3b; --champ:#e9c7a0; --champ-2:#e5b985;
+  --dark:#131516; --dark-2:#1d2023; --dark-line:#34363a; --on-dark:#f1ede7; --on-dark-muted:#b4acae;
+  --serif:"Marcellus",Georgia,serif; --sans:"Figtree",system-ui,sans-serif;
+  --sec:128px; --gut:24px; --r:24px; --r-sm:16px;
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+.sec{padding:var(--sec) 0}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;line-height:1.12;text-wrap:balance}
+h2{font-size:48px}
+h3{font-size:24px;line-height:1.24}
+p,li{text-wrap:pretty}
+summary{text-wrap:balance}
+.s{display:block;text-wrap:balance}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font:600 12px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--bronze)}
+.eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+.dark .eyebrow{color:var(--champ)}
+.lead{font-size:20px;line-height:1.6;color:var(--muted)}
+.dark .lead{color:var(--on-dark-muted)}
+.head{display:grid;gap:20px;max-width:720px;margin-bottom:64px}
+.head.center{margin-inline:auto;text-align:center;justify-items:center}
+
+/* Dugmad: primarno (popunjeno), sekundarno (obrub), tercijarno (tekst + strelica) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:56px;padding:0 28px;border-radius:999px;font:600 16px/1 var(--sans);white-space:nowrap;transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease)}
+.btn-1{background:var(--ink);color:#fff}
+.btn-1:hover{background:var(--bronze)}
+.btn-2{border:1px solid var(--ink);color:var(--ink)}
+.btn-2:hover{background:var(--ink);color:#fff}
+.dark .btn-1{background:var(--champ);color:var(--ink)}
+.dark .btn-1:hover{background:#fff}
+.dark .btn-2{border-color:var(--on-dark-muted);color:var(--on-dark)}
+.dark .btn-2:hover{background:var(--on-dark);color:var(--ink)}
+.btn-3{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--bronze);border-bottom:1px solid currentColor;padding-bottom:4px}
+.dark .btn-3{color:var(--champ)}
+.btn svg,.btn-3 svg{width:16px;height:16px;flex:none}
+.btn:hover svg.arr,.btn-3:hover svg{transform:translateX(4px)}
+svg.arr{transition:transform .3s var(--ease)}
+
+/* Gornja traka */
+.topbar{background:var(--dark);color:var(--on-dark-muted);font-size:12px;line-height:1.4}
+.topbar .wrap{display:flex;justify-content:space-between;gap:24px;height:40px;align-items:center}
+.topbar .grp{display:flex;gap:24px;align-items:center}
+.topbar a:hover{color:var(--champ)}
+.topbar .st{display:inline-flex;align-items:center;gap:8px;color:var(--on-dark)}
+.dot{width:8px;height:8px;border-radius:50%;background:#7dbb8a;box-shadow:0 0 0 4px rgba(125,187,138,.2)}
+.dot.off{background:#c98a6b;box-shadow:0 0 0 4px rgba(201,138,107,.2)}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(247,244,239,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+.hdr.sc{border-color:var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;gap:32px}
+.logo{display:grid;line-height:1;justify-items:center}
+.logo b{font:400 28px/1 var(--serif);letter-spacing:.24em;margin-right:-.24em}
+.logo i{font:500 12px/1 var(--sans);font-style:normal;letter-spacing:.72em;margin-right:-.72em;color:var(--bronze);margin-top:8px}
+.nav{display:flex;gap:32px;font-weight:500}
+.nav a{position:relative;padding:8px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--bronze);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr-cta{display:flex;align-items:center;gap:20px}
+.hdr-tel{font-weight:600;white-space:nowrap}
+.hdr .btn{height:48px;padding:0 24px}
+.burger{display:none;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);place-items:center}
+.burger span{display:block;width:20px;height:1px;background:var(--ink);box-shadow:0 -6px 0 var(--ink),0 6px 0 var(--ink)}
+.mnav{display:none}
+
+/* Hero */
+.hero{padding:64px 0 var(--sec)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-txt{container-type:inline-size;display:grid;gap:28px;justify-items:start}
+.hero h1{font-size:64px;font-size:clamp(40px,5.6vw,84px);font-size:clamp(40px,12.8cqi,84px);line-height:1.04;letter-spacing:-.02em}
+.hero h1 .ln{display:block;white-space:nowrap}
+.hero h1 .ln:last-child{color:var(--bronze)}
+.hero .lead{max-width:560px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px}
+.proof{display:grid;grid-template-columns:repeat(3,auto);gap:32px;padding-top:28px;border-top:1px solid var(--line);width:100%}
+.proof div{display:grid;gap:4px}
+.proof b{font:400 32px/1 var(--serif)}
+.proof span{font-size:12px;line-height:1.4;color:var(--muted);letter-spacing:.04em}
+
+.hero-vis{position:relative;perspective:1400px}
+.tilt{position:relative;transform-style:preserve-3d;transition:transform .6s var(--ease)}
+.fm{position:relative;aspect-ratio:7/8;border-radius:var(--r);overflow:hidden;background:#5f5d5c;box-shadow:0 40px 80px -40px rgba(22,24,26,.5)}
+.fm-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fm-img{transform-origin:600px 400px}
+.fm-lines{fill:none;stroke:#fff;stroke-width:1.2;vector-effect:non-scaling-stroke}
+.fm-lines .d{stroke-dasharray:1;stroke-dashoffset:0}
+.fm-lines .dash{stroke-dasharray:4 6}
+.fm-lines text{fill:#fff;stroke:none;font:500 16px var(--sans);letter-spacing:.12em}
+.fm::after{content:"";position:absolute;inset:-20% -60%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);transform:translateX(-70%);pointer-events:none}
+.hs{--tx:-10px;position:absolute;transform:translate(var(--tx),-50%);display:flex;align-items:center;gap:8px;z-index:2}
+.hs .pin{position:relative;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.28);border:1px solid #fff;display:grid;place-items:center;flex:none}
+.hs .pin::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.hs .pin::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid #fff;opacity:0}
+.hs .lbl{background:rgba(255,255,255,.92);color:var(--ink);font:600 12px/1 var(--sans);letter-spacing:.04em;padding:8px 12px;border-radius:999px;white-space:nowrap;transition:background .3s,color .3s}
+.hs.l{flex-direction:row-reverse;--tx:calc(-100% + 10px)}
+.hs:hover .lbl,.hs:focus-visible .lbl{background:var(--ink);color:#fff}
+.hs:focus-visible{outline:none}
+.hs:focus-visible .pin{box-shadow:0 0 0 4px rgba(233,199,160,.8)}
+.fcard{position:absolute;background:rgba(255,255,255,.94);border-radius:var(--r-sm);box-shadow:0 20px 40px -20px rgba(22,24,26,.35);padding:16px 20px;display:flex;gap:12px;align-items:center;font-size:12px;line-height:1.4;color:var(--muted);transform:translateZ(60px)}
+.fcard b{display:block;color:var(--ink);font-size:16px;font-weight:600}
+.fc-open{top:24px;left:-32px}
+.fc-doc{bottom:40px;left:-48px;max-width:376px}
+.fc-doc img{width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:50% 25%;flex:none}
+.fm-hint{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.fm-hint::before{content:"";width:8px;height:8px;border-radius:50%;border:1px solid var(--bronze)}
+
+/* Potpisna animacija u herou */
+@keyframes fmImg{from{transform:scale(1.08);filter:saturate(.2) brightness(.9)}to{transform:scale(1);filter:none}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes dim{to{opacity:.42}}
+@keyframes pop{from{opacity:0;transform:translate(var(--tx),-50%) scale(.6)}to{opacity:1;transform:translate(var(--tx),-50%) scale(1)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(2.4)}}
+@keyframes sheen{0%,84%{transform:translateX(-70%)}100%{transform:translateX(70%)}}
+@keyframes rise{from{opacity:0;transform:translateZ(60px) translateY(16px)}to{opacity:1;transform:translateZ(60px)}}
+.js .fm-img{animation:fmImg 1.6s var(--ease) both}
+.js .fm-lines .d{stroke-dashoffset:1;animation:draw 1.1s var(--ease) forwards;animation-delay:calc(.6s + var(--i,0)*.14s)}
+.js .fm-lines .dash{stroke-dasharray:none}
+.js .fm-lines{animation:dim 1.2s ease 4.2s forwards}
+.js .fm-lines text{opacity:0;animation:fade .6s ease forwards;animation-delay:calc(1.6s + var(--i,0)*.12s)}
+.js .hs{opacity:0;animation:pop .6s var(--ease) forwards;animation-delay:calc(2.4s + var(--i,0)*.12s)}
+.js .hs .pin::after{animation:ring 2.4s ease-out infinite;animation-delay:calc(3.4s + var(--i,0)*.4s)}
+.js .fm::after{animation:sheen 10s ease-in-out 5s infinite}
+.js .fcard{animation:rise .8s var(--ease) both}
+.js .fc-open{animation-delay:1.8s}
+.js .fc-doc{animation-delay:2.2s}
+
+/* Brojke */
+.stats{background:var(--paper);border-block:1px solid var(--line)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:48px 32px;display:grid;gap:8px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{font:400 56px/1 var(--serif)}
+.stat b small{font-size:32px;color:var(--bronze)}
+.stat>span{color:var(--muted);font-size:16px;line-height:1.4}
+
+/* Zašto bolnica */
+.why .wrap{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.why-media{position:sticky;top:120px;display:grid;gap:16px}
+.why-media .m1{border-radius:var(--r);aspect-ratio:4/5;object-fit:cover;width:100%;height:auto}
+.why-media .note{background:var(--dark);color:var(--on-dark);border-radius:var(--r-sm);padding:24px;display:grid;gap:8px}
+.why-media .note b{font:400 20px/1.3 var(--serif)}
+.why-media .note span{color:var(--on-dark-muted);font-size:16px}
+.why .head{margin-bottom:48px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:32px;display:grid;gap:12px;align-content:start;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -28px rgba(22,24,26,.3);border-color:transparent}
+.ico{width:48px;height:48px;border-radius:50%;background:var(--sand);display:grid;place-items:center;color:var(--bronze);margin-bottom:8px}
+.ico svg{width:24px;height:24px}
+.card p{color:var(--muted)}
+
+/* Procedure */
+.procs{background:var(--paper)}
+.tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.tab{height:48px;padding:0 24px;border-radius:999px;border:1px solid var(--line);font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:background .3s,color .3s,border-color .3s}
+.tab small{font-size:12px;color:var(--muted);font-weight:500}
+.tab[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab[aria-selected="true"] small{color:var(--champ)}
+.tabs-hint{display:none}
+.panel{display:grid;grid-template-columns:5fr 7fr;gap:48px;align-items:start}
+.js .panel[hidden]{display:none}
+.panel+.panel{margin-top:64px}
+.js .panel+.panel{margin-top:0}
+.panel-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;position:sticky;top:120px}
+.panel-img img{width:100%;height:100%;object-fit:cover}
+.panel-img figcaption{position:absolute;left:20px;bottom:20px;right:20px;color:#fff;font:400 32px/1.1 var(--serif);text-shadow:0 2px 24px rgba(0,0,0,.4)}
+.plist{list-style:none;border-top:1px solid var(--line)}
+.prow{width:100%;text-align:left;display:grid;grid-template-columns:1fr auto;gap:8px 24px;padding:28px 0;border-bottom:1px solid var(--line);align-items:center;transition:padding .4s var(--ease)}
+.prow h3{font-size:24px}
+.prow p{grid-column:1;color:var(--muted)}
+.prow .meta{grid-column:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{font-size:12px;line-height:1;padding:8px 12px;border-radius:999px;background:var(--bg);color:var(--ink-2);border:1px solid var(--line);white-space:nowrap}
+.prow .go{grid-column:2;grid-row:1/span 3;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease)}
+.prow .go svg{width:16px;height:16px}
+.prow:hover{padding-left:12px}
+.prow:hover .go{background:var(--ink);color:#fff;border-color:var(--ink);transform:rotate(-45deg)}
+
+/* InMode */
+.dark{background:var(--dark);color:var(--on-dark)}
+.inm .wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.inm-fig{position:sticky;top:112px;height:min(640px,calc(100vh - 160px));display:grid;place-items:center}
+.skin{width:100%;height:100%;max-width:520px}
+.skin text{font:600 12px var(--sans);letter-spacing:.16em;fill:var(--on-dark-muted)}
+.skin .epi{transition:d 1.4s var(--ease)}
+.skin .needles{transition:transform 1.2s var(--ease),opacity .8s}
+.skin .needles .n{transform-box:fill-box;transform-origin:top;transform:scaleY(0);transition:transform 1s var(--ease) .3s}
+.skin .heat{opacity:0;transition:opacity .8s}
+.skin .probe{transform:translateX(-360px);transition:transform 1.4s var(--ease),opacity .8s}
+.skin .phot{opacity:0;transition:opacity .8s .6s}
+.skin .cell{transform-box:fill-box;transform-origin:center;transition:transform 1.4s var(--ease) .4s,opacity 1.4s .4s}
+.skin .loose{transition:opacity 1s}
+.skin .dense{opacity:0;transition:opacity .4s}
+.skin .dense path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease)}
+.skin[data-step="3"] .dense{opacity:1}
+.skin .lift{opacity:0;transition:opacity .8s .8s}
+.skin[data-step="1"] .needles{transform:translateY(60px)}
+.skin[data-step="1"] .needles .n{transform:scaleY(1)}
+.skin[data-step="1"] .heat.h1{opacity:1}
+.skin[data-step="2"] .needles{opacity:0}
+.skin[data-step="2"] .probe,.skin[data-step="3"] .probe{transform:none}
+.skin[data-step="3"] .probe{opacity:0}
+.skin[data-step="2"] .phot{opacity:1}
+.skin[data-step="2"] .cell.near,.skin[data-step="3"] .cell.near{transform:scale(.55);opacity:.45}
+.skin[data-step="3"] .loose{opacity:.15}
+.skin[data-step="3"] .dense path{stroke-dashoffset:0}
+.skin[data-step="3"] .epi{d:path("M0 150 V116 C30 116 40 116 60 116 S90 116 110 116 S140 116 165 116 S200 116 225 116 S260 116 285 116 S320 116 345 116 S380 116 405 116 S440 116 480 116 V150 Z")}
+.skin[data-step="3"] .lift{opacity:1}
+@keyframes flick{0%,100%{opacity:.75}50%{opacity:1}}
+.skin[data-step="1"] .heat.h1 circle{animation:flick 1.2s ease-in-out infinite}
+.inm-steps{display:grid}
+.inm-intro{display:grid;gap:20px;padding-bottom:64px}
+.step{min-height:64vh;display:grid;align-content:center;gap:16px;padding:48px 0;border-top:1px solid var(--dark-line);opacity:.4;transition:opacity .6s}
+.step.on{opacity:1}
+.no-js .step,.step:first-of-type{opacity:1}
+.step .num{font:400 16px var(--serif);color:var(--champ);letter-spacing:.12em}
+.step h3{font-size:32px}
+.step p{color:var(--on-dark-muted);font-size:16px;max-width:480px}
+.step .tag{justify-self:start;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--dark-line);border-radius:999px;padding:8px 12px;color:var(--champ)}
+.inm-edu{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:var(--dark-2);border:1px solid var(--dark-line);border-radius:var(--r);padding:24px;margin-top:32px}
+.inm-edu .ph{display:flex}
+.inm-edu .ph img{width:96px;height:120px;object-fit:cover;border-radius:var(--r-sm)}
+.inm-edu .ph img+img{margin-left:-24px;border:4px solid var(--dark-2);border-radius:20px;width:104px;height:128px;margin-top:-4px}
+.inm-edu b{font:400 20px/1.3 var(--serif);display:block;margin-bottom:8px}
+.inm-edu p{color:var(--on-dark-muted)}
+
+/* Planer oporavka */
+.rec .head{margin-bottom:40px}
+.pick{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.pick button{height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:16px;font-weight:500;transition:background .3s,color .3s,border-color .3s}
+.pick button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.planner{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:40px;display:grid;gap:40px}
+.pl-top{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:24px;align-items:end}
+.pl-top h3{font-size:32px}
+.pl-top .k{display:grid;gap:4px;padding-left:24px;border-left:1px solid var(--line)}
+.pl-top .k span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pl-top .k b{font-weight:600;font-size:16px;line-height:1.4}
+.track{position:relative;height:200px;margin:0 16px}
+.track .base{position:absolute;left:0;right:0;top:100px;height:2px;background:var(--line);border-radius:2px}
+.track .fill{position:absolute;left:0;top:100px;height:2px;background:var(--bronze);border-radius:2px;width:0;transition:width 1.2s var(--ease)}
+.tick{position:absolute;top:112px;transform:translateX(-50%);font-size:12px;color:var(--muted);white-space:nowrap}
+.tick::before{content:"";position:absolute;left:50%;top:-16px;width:1px;height:8px;background:var(--line)}
+.ms{position:absolute;top:100px;width:0;height:0}
+.ms i{position:absolute;left:-8px;top:-7px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--bronze)}
+.ms .t{position:absolute;left:0;bottom:24px;transform:translateX(-50%);width:160px;text-align:center;font-size:12px;line-height:1.4;color:var(--muted)}
+.ms .t b{display:block;font-size:16px;color:var(--ink);font-weight:600;line-height:1.3}
+.ms.dn .t{bottom:auto;top:44px}
+.ms.edge-l .t{transform:translateX(-12px);text-align:left}
+.ms.edge-r .t{transform:translateX(calc(-100% + 12px));text-align:right}
+.ms{opacity:0;transition:opacity .5s;transition-delay:var(--dl,0s)}
+.ms.in{opacity:1}
+.ml{display:none;list-style:none;gap:0}
+.pl-note{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+
+/* Tim */
+.team{background:var(--sand)}
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.doc{background:var(--paper);border-radius:var(--r);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.doc .ph{aspect-ratio:5/4;overflow:hidden}
+.doc .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.doc:hover .ph img{transform:scale(1.04)}
+.doc-b{padding:40px;display:grid;gap:16px;align-content:start}
+.doc-b .role{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);font-weight:600}
+.doc-b h3{font-size:32px}
+.doc-b>p{color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.doc details{border-top:1px solid var(--line);padding-top:16px}
+.doc summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;font-weight:600}
+.doc summary::-webkit-details-marker{display:none}
+.doc summary::after{content:"+";font:400 24px/1 var(--serif);color:var(--bronze);transition:transform .3s}
+.doc details[open] summary::after{transform:rotate(45deg)}
+.tl{list-style:none;display:grid;gap:12px;margin-top:20px}
+.tl li{display:grid;grid-template-columns:88px 1fr;gap:16px;font-size:16px;line-height:1.5}
+.tl li b{font-family:var(--serif);font-weight:400;color:var(--bronze)}
+.tl-h{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:24px}
+
+/* Proces */
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;list-style:none}
+.steps4::before{content:"";position:absolute;left:0;right:0;top:28px;height:1px;background:var(--line)}
+.steps4::after{content:"";position:absolute;left:0;right:0;top:28px;height:1px;background:var(--bronze);transform:scaleX(0);transform-origin:left;transition:transform 2s var(--ease)}
+.steps4.in::after{transform:scaleX(1)}
+.no-js .steps4::after{transform:scaleX(1)}
+.st4{position:relative;z-index:1;display:grid;gap:12px;align-content:start}
+.st4 .n{width:56px;height:56px;border-radius:50%;background:var(--bg);border:1px solid var(--bronze);display:grid;place-items:center;font:400 20px/1 var(--serif);color:var(--bronze);margin-bottom:16px}
+.st4 p{color:var(--muted)}
+.prep{margin-top:64px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:32px 40px}
+.prep .ico{margin:0}
+.prep b{font:400 24px/1.3 var(--serif);display:block;margin-bottom:4px}
+.prep p{color:var(--muted)}
+
+/* Pristup (editorijal) */
+.appr{padding-bottom:0}
+.appr .wrap{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.appr .txt{grid-column:1/span 5;display:grid;gap:24px;padding-bottom:64px;align-self:center}
+.appr .m{border-radius:var(--r);overflow:hidden}
+.appr .m img{width:100%;height:100%;object-fit:cover}
+.appr .m1{grid-column:6/span 4;aspect-ratio:3/4}
+.appr .m2{grid-column:10/span 3;aspect-ratio:2/3;margin-bottom:96px}
+.marq{overflow:hidden;border-block:1px solid var(--line);margin-top:96px;padding:28px 0;white-space:nowrap}
+.marq-in{display:inline-flex;gap:48px;animation:marq 48s linear infinite;font:400 32px/1 var(--serif);color:var(--ink-2)}
+.marq-in span{display:inline-flex;align-items:center;gap:48px}
+.marq-in span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--champ-2)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* FAQ */
+.faq .wrap{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.faq .head{position:sticky;top:120px;margin:0}
+.qa{display:grid;gap:12px}
+.qa details{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:0 28px;transition:border-color .3s}
+.qa details[open]{border-color:var(--bronze)}
+.qa summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:24px 0;font-weight:600;font-size:16px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"";flex:none;width:32px;height:32px;border-radius:50%;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%237e5e3b' stroke-width='1.5'%3E%3Cpath d='M8 3v10M3 8h10'/%3E%3C/svg%3E") center/16px no-repeat;transition:transform .4s var(--ease)}
+.qa details[open] summary::after{transform:rotate(45deg)}
+.qa details p{padding-bottom:24px;color:var(--muted)}
+
+/* CTA + kontakt */
+.cta{padding:96px 0}
+.cta .wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.cta h2{font-size:48px}
+.cta .lead{margin-top:16px}
+.cta .btns{display:flex;gap:12px;flex-wrap:wrap}
+.ct .wrap{display:grid;grid-template-columns:5fr 7fr;gap:24px}
+.ct-info{display:grid;gap:16px;align-content:start}
+.ct-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px 32px;display:grid;gap:8px}
+.ct-card>span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ct-card a,.ct-card b{font:400 24px/1.3 var(--serif)}
+.ct-card a:hover{color:var(--bronze)}
+.hours{list-style:none;display:grid;gap:8px;margin-top:4px}
+.hours li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.hours li.today{font-weight:600}
+.hours li.today::before{content:"Danas";font-size:12px;color:var(--bronze);margin-right:auto;margin-left:12px;order:2;align-self:center}
+.map{border-radius:var(--r);overflow:hidden;min-height:520px;background:var(--sand);position:relative}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.6) contrast(1.05)}
+
+/* Footer */
+.ftr{background:var(--dark);color:var(--on-dark-muted);padding:80px 0 40px;font-size:16px}
+.ftr .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.ftr img{width:220px;height:auto;margin-bottom:24px}
+.ftr h4{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark);margin-bottom:20px}
+.ftr ul{list-style:none;display:grid;gap:8px}
+.ftr a:hover{color:var(--champ)}
+.ftr .bottom{grid-column:1/-1;border-top:1px solid var(--dark-line);padding-top:24px;margin-top:32px;font-size:12px;display:flex;justify-content:space-between;gap:24px}
+
+/* Dijalog procedure */
+dialog.pd{border:0;padding:0;border-radius:var(--r);width:min(960px,calc(100% - 32px));max-height:calc(100vh - 48px);margin:auto;background:var(--paper);color:var(--ink);box-shadow:0 40px 120px -20px rgba(0,0,0,.5);overflow:hidden}
+dialog.pd::backdrop{background:rgba(19,21,22,.6);backdrop-filter:blur(4px)}
+dialog.pd[open]{animation:dlg .5s var(--ease)}
+@keyframes dlg{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+.pd-in{display:grid;grid-template-columns:2fr 3fr;max-height:calc(100vh - 48px)}
+.pd-img{position:relative;min-height:100%}
+.pd-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pd-b{padding:48px;display:grid;gap:20px;overflow:auto;align-content:start}
+.pd-b .cat{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);font-weight:600}
+.pd-b h3{font-size:40px}
+.pd-b .desc{color:var(--muted)}
+.pd-f{list-style:none;display:grid;gap:0;border-top:1px solid var(--line)}
+.pd-f li{display:grid;grid-template-columns:136px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+.pd-f li span{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding-top:4px}
+.pd-b .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.pd-x{position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;background:var(--paper);display:grid;place-items:center;z-index:2;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.pd-x svg{width:16px;height:16px}
+
+/* Reveal */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv-img{clip-path:inset(12% 0 0 0 round var(--r));transition:clip-path 1.4s var(--ease)}
+.js .rv-img.in{clip-path:inset(0 0 0 0 round var(--r))}
+
+@media (max-width:1180px){
+  .nav{gap:24px}
+  .hdr-tel{display:none}
+  .fc-doc{left:-24px}.fc-open{left:-16px}
+}
+@media (max-width:1024px){
+  :root{--sec:96px}
+  h2,.cta h2{font-size:40px}
+  .nav,.hdr .btn{display:none}
+  .burger{display:grid}
+  .mnav{display:block;position:fixed;inset:120px 0 auto 0;background:var(--bg);border-bottom:1px solid var(--line);padding:16px var(--gut) 32px;transform:translateY(-12px);opacity:0;pointer-events:none;transition:.4s var(--ease);z-index:49}
+  .mnav.open{transform:none;opacity:1;pointer-events:auto}
+  .mnav a{display:block;padding:16px 0;border-bottom:1px solid var(--line);font:400 24px/1.2 var(--serif)}
+  .mnav .btn{margin-top:24px;width:100%;font-family:var(--sans);font-size:16px;border:0;padding:0 28px}
+  .hero .wrap{grid-template-columns:1fr;gap:56px}
+  .hero-vis{max-width:560px;margin-left:48px}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .why .wrap,.faq .wrap,.inm .wrap{grid-template-columns:1fr}
+  .why-media{position:static;grid-template-columns:1fr 1fr;align-items:end}
+  .why-media .m1{aspect-ratio:4/3}
+  .faq .head{position:static}
+  .panel{grid-template-columns:1fr}
+  .panel-img{position:relative;top:0;aspect-ratio:16/9}
+  .inm-fig{top:80px;height:48vh;z-index:1;background:var(--dark);padding:16px 0;margin:0 calc(var(--gut) * -1);box-shadow:0 24px 24px -8px var(--dark)}
+  .step{min-height:56vh}
+  .pl-top{grid-template-columns:1fr 1fr 1fr}
+  .pl-top h3{grid-column:1/-1}
+  .pl-top .k:nth-child(2){border-left:0;padding-left:0}
+  .docs{grid-template-columns:1fr}
+  .steps4{grid-template-columns:1fr 1fr;row-gap:48px}
+  .steps4::before,.steps4::after{display:none}
+  .appr .txt{grid-column:1/-1;padding-bottom:16px}
+  .appr .m1{grid-column:1/span 7}
+  .appr .m2{grid-column:8/span 5}
+  .ct .wrap{grid-template-columns:1fr}
+  .map{min-height:400px}
+  .cta .wrap{grid-template-columns:1fr}
+  .prep{grid-template-columns:auto 1fr}
+  .prep .btn{grid-column:2;justify-self:start}
+  .ftr .wrap{grid-template-columns:1fr 1fr}
+}
+@media (max-width:700px){
+  :root{--sec:80px;--gut:16px}
+  h2,.cta h2{font-size:32px}
+  h3{font-size:20px}
+  .lead{font-size:16px}
+  .topbar .hide-m{display:none}
+  .topbar .wrap{justify-content:center}
+  .hdr .wrap{height:72px}
+  .mnav{top:112px}
+  .logo b{font-size:24px}
+  .hero{padding-top:40px}
+  .hero-vis{margin-left:0}
+  .proof{grid-template-columns:repeat(3,1fr);gap:16px}
+  .proof b{font-size:24px}
+  .fc-open{left:12px;top:12px}
+  .fc-doc{position:relative;left:auto;bottom:auto;max-width:none;margin-top:12px;transform:none;animation:none!important;box-shadow:none;border:1px solid var(--line)}
+  .hs .lbl{font-size:12px;padding:8px}
+  .hs.hide-m .lbl{display:none}
+  .stat{padding:32px 16px}
+  .stat b{font-size:40px}
+  .stat b small{font-size:24px}
+  .stat>span{font-size:12px}
+  .cards{grid-template-columns:1fr}
+  .card{padding:24px}
+  .why-media{grid-template-columns:1fr}
+  .why-media .m1{aspect-ratio:16/10}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--gut) * -1) 32px;padding:0 var(--gut);scrollbar-width:none}
+  .tab{flex:none}
+  .prow h3{font-size:20px}
+  .prow .go{width:40px;height:40px}
+  .inm-fig{height:44vh;top:72px}
+  .step{min-height:48vh}
+  .step h3{font-size:24px}
+  .inm-edu{grid-template-columns:1fr}
+  .planner{padding:24px}
+  .pl-top{grid-template-columns:1fr 1fr}
+  .pl-top h3{font-size:24px}
+  .pl-top .k:nth-child(4){border-left:0;padding-left:0}
+  .track{display:none}
+  .ml{display:grid}
+  .ml li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .ml li span{color:var(--bronze);font-weight:600;font-size:12px;padding-top:4px}
+  .doc-b{padding:24px}
+  .doc-b h3{font-size:24px}
+  .tl li{grid-template-columns:72px 1fr;gap:12px}
+  .steps4{grid-template-columns:1fr}
+  .prep{grid-template-columns:1fr;padding:24px;gap:16px}
+  .appr .m1{grid-column:1/span 12}
+  .appr .m2{display:none}
+  .marq{margin-top:48px}
+  .marq-in{font-size:24px}
+  .qa details{padding:0 20px}
+  .ct-card{padding:24px}
+  .ct-card a,.ct-card b{font-size:20px}
+  .ftr .wrap{grid-template-columns:1fr}
+  .ftr .bottom{flex-direction:column}
+  .pd-in{grid-template-columns:1fr;overflow:auto}
+  .pd-img{aspect-ratio:16/9}
+  .pd-b{padding:24px;overflow:visible}
+  .pd-b h3{font-size:28px}
+  .pd-f li{grid-template-columns:1fr;gap:4px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .fm-lines .d{stroke-dashoffset:0}
+  .js .fm-lines{opacity:.5}
+  .js .fm-lines text,.js .hs,.js .fcard{opacity:1}
+  .js .rv{opacity:1;transform:none}
+  .js .rv-img{clip-path:none}
+  .ms{opacity:1}
+}
 </style>
 </head>
 <body>
 
-<header id="site-header">
-  <div class="wrap nav-inner">
-    <a href="#hero" class="logo">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-        <circle cx="17" cy="17" r="15.5" stroke="#467c45" stroke-width="2"/>
-        <path d="M17 10V24M10 17H24" stroke="#467c45" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Adonis bolnica
-    </a>
-    <nav class="nav-links">
-      <a href="#hero">Početna</a>
-      <a href="#usluge">Usluge</a>
-      <a href="#o-nama">O nama</a>
+<div class="topbar">
+  <div class="wrap">
+    <div class="grp">
+      <span class="st" id="openStatus"><i class="dot"></i><span>Pon–Pet 08–20h · Sub 08–16h</span></span>
+      <span class="hide-m">Gundulićev venac 7, Beograd</span>
+    </div>
+    <div class="grp hide-m">
+      <a href="tel:+381113542785">011 354 27 85</a>
+      <a href="tel:+38162404564">062 404 564</a>
+      <a href="mailto:adonisbolnica@gmail.com">adonisbolnica@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Bolnica Adonis, početak stranice"><b>ADONIS</b><i>BOLNICA</i></a>
+    <nav class="nav" aria-label="Glavna navigacija">
+      <a href="#procedure">Procedure</a>
+      <a href="#inmode">InMode</a>
+      <a href="#oporavak">Oporavak</a>
+      <a href="#tim">Naš tim</a>
+      <a href="#pitanja">Pitanja</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <div class="nav-cta">
-      <a href="tel:+381114001000" class="phone-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        011/ 400 100
-      </a>
-      <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Otvori meni">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="wrap">
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="#hero">Početna</a>
-      <a href="#usluge">Usluge</a>
-      <a href="#o-nama">O nama</a>
-      <a href="#kontakt">Kontakt</a>
-      <a href="#kontakt" class="btn btn-primary btn-block">Zakaži pregled</a>
+    <div class="hdr-cta">
+      <a class="hdr-tel" href="tel:+381113542785">011 354 27 85</a>
+      <a class="btn btn-1" href="#kontakt">Zakažite konsultacije</a>
+      <button class="burger" id="burger" aria-label="Otvori meni" aria-expanded="false" aria-controls="mnav"><span></span></button>
     </div>
   </div>
 </header>
+<nav class="mnav" id="mnav" aria-label="Mobilna navigacija">
+  <a href="#procedure">Procedure</a>
+  <a href="#inmode">InMode tehnologija</a>
+  <a href="#oporavak">Oporavak</a>
+  <a href="#tim">Naš tim</a>
+  <a href="#pitanja">Česta pitanja</a>
+  <a href="#kontakt">Kontakt</a>
+  <a class="btn btn-1" href="tel:+381113542785">Pozovite 011 354 27 85</a>
+</nav>
 
-<section class="hero" id="hero">
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
   <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <span class="eyebrow">Adonis bolnica · Privatna zdravstvena ustanova</span>
-        <h1>Pregled kod specijaliste ove nedelje, ne za šest meseci</h1>
-        <p>Zakažeš termin i kažemo ti tačno kad dolaziš i kod kog lekara. Nalaz dobijaš odmah posle pregleda, bez čekanja u redu i bez trčanja od šaltera do šaltera.</p>
-        <div class="hero-cta-row">
-          <a href="#kontakt" class="btn btn-primary">Zakaži pregled</a>
-          <a href="tel:+381114001000" class="phone-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            ili pozovi 011/ 400 100
-          </a>
-        </div>
+    <div class="hero-txt">
+      <span class="eyebrow">Plastična, estetska i rekonstruktivna hirurgija</span>
+      <h1><span class="ln">Prirodan rezultat.</span><span class="ln">Sigurne ruke.</span></h1>
+      <p class="lead"><span class="s">Hirurški i nehirurški estetski tretmani na jednom mestu.</span><span class="s">U centru Beograda, sa dvoje specijalista plastične hirurgije.</span></p>
+      <div class="hero-btns">
+        <a class="btn btn-1" href="#kontakt">Zakažite konsultacije <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+        <a class="btn btn-2" href="#procedure">Pogledajte procedure</a>
       </div>
-      <div class="placeholder-img hero-image" role="img" aria-label="Fotografija zgrade i ulaza u Adonis bolnicu">
-        FOTOGRAFIJA ZGRADE ADONIS BOLNICE
+      <div class="proof">
+        <div><b>25+</b><span>godina hirurškog iskustva</span></div>
+        <div><b>100+</b><span>objavljenih naučnih radova</span></div>
+        <div><b>InMode</b><span>edukativni centar za region</span></div>
       </div>
     </div>
 
-    <div class="benefits-bar reveal">
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Termin u roku od 24h
-        </div>
-        <div class="benefit-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Specijalisti svih profila
-        </div>
-        <div class="benefit-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Nalaz odmah posle pregleda
-        </div>
-        <div class="benefit-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Parking ispred ulaza
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pain">
-  <div class="wrap">
-    <div class="pain-inner reveal">
-      <p>Znaš taj osećaj kad zakažeš pregled u državnoj bolnici i dobiješ termin za četiri meseca unapred. U međuvremenu simptom ne čeka, a ni tvoje strpljenje. U Adonis bolnici dolaziš na pregled ove nedelje, kod lekara koji ti posveti vreme koje ti treba, ne pet minuta između dva pacijenta.</p>
-    </div>
-  </div>
-</section>
-
-<section id="usluge" class="bg-soft">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Usluge</span>
-      <h2>Sve što ti treba, pod jednim krovom</h2>
-      <p>Od prvog pregleda do nalaza u ruci, rešavaš sve na jednoj adresi, bez slanja po gradu.</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6a5 5 0 0 0 10 0V4"/><path d="M19 4v4"/><circle cx="19" cy="11" r="2.5"/></svg>
-        </div>
-        <h3>Internistički pregled</h3>
-        <p>Opšti pregled, provera krvne slike i osnovnih parametara. Polazna tačka kad ne znaš šta te tačno muči.</p>
-        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/><path d="M3 12h4l2-4 3 7 2-5h3"/></svg>
-        </div>
-        <h3>Kardiologija</h3>
-        <p>EKG, ultrazvuk srca i pregled kod kardiologa, za tegobe sa pritiskom, ritmom ili bolom u grudima.</p>
-        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/></svg>
-        </div>
-        <h3>Ginekologija i akušerstvo</h3>
-        <p>Redovna kontrola, ultrazvuk i praćenje trudnoće, sa lekarom koji ostaje isti od prvog do poslednjeg pregleda.</p>
-        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6a2.5 2.5 0 1 1 3 2.45V15a3 3 0 0 0 3 3h3.1"/><path d="M18 6a2.5 2.5 0 1 0-3 2.45V9"/><circle cx="18" cy="18" r="2.5"/></svg>
-        </div>
-        <h3>Ortopedija</h3>
-        <p>Pregled zglobova, kičme i povreda, sa rendgenom i ultrazvukom na licu mesta.</p>
-        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><line x1="12" y1="3.5" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="20.5" y2="12"/></svg>
-        </div>
-        <h3>Radiologija i ultrazvuk</h3>
-        <p>Snimanje i nalaz istog dana, bez slanja na drugu lokaciju i čekanja rezultata nedeljama.</p>
-        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v7.5L5 19a1.5 1.5 0 0 0 1.3 2.3h11.4A1.5 1.5 0 0 0 19 19l-5-8.5V3"/><line x1="8" y1="16" x2="16" y2="16"/></svg>
-        </div>
-        <h3>Laboratorijska dijagnostika</h3>
-        <p>Krv vadiš ujutru, nalaz čekaš do popodneva, ne danima kao u redovnom sistemu.</p>
-        <a href="#kontakt" class="service-link">Zakaži ovaj pregled
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#325833" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="services-cta reveal">
-      <a href="#kontakt" class="btn btn-primary">Zakaži pregled odmah</a>
-    </div>
-  </div>
-</section>
-
-<section id="proces">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Kako ide zakazivanje</span>
-      <h2>Tri koraka do termina</h2>
-      <p>Bez čekanja u redu za uputnicu i bez nagađanja kad ćeš doći na red.</p>
-    </div>
-
-    <div class="process-grid">
-      <div class="process-step reveal">
-        <div class="step-number">01</div>
-        <h3>Javiš nam se</h3>
-        <p>Pozoveš nas ili ostaviš broj telefona kroz formu na sajtu. Traje manje od minuta.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-number">02</div>
-        <h3>Dobiješ termin za 24h</h3>
-        <p>Javimo ti tačan datum, vreme i ime lekara koji te prima, bez čekanja da sami proveravaš.</p>
-      </div>
-      <div class="process-step reveal">
-        <div class="step-number">03</div>
-        <h3>Dolaziš na pregled</h3>
-        <p>Nalaz i preporuku nosiš kući istog dana, spreman za sledeći korak, ako ti je potreban.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="o-nama" class="bg-soft">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="placeholder-img about-image reveal" role="img" aria-label="Fotografija tima lekara Adonis bolnice">
-        FOTOGRAFIJA TIMA LEKARA
-      </div>
-      <div class="about-text reveal">
-        <span class="eyebrow">O Adonis bolnici</span>
-        <h2>Zdravstvena nega kakvu bi poželeo sebi i porodici</h2>
-        <p>Adonis bolnica je privatna zdravstvena ustanova. Radimo preglede, dijagnostiku i manje hirurške intervencije pod jednim krovom.</p>
-        <p>Kod nas ne čekaš uputnicu ni red za red. Lekar koji te prima ima vremena da te sasluša i objasni ti nalaz, ne samo da ga potpiše i pošalje dalje.</p>
-        <ul class="about-list">
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Lekari specijalisti sa dugogodišnjim iskustvom
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Termin u roku od 24 sata od poziva
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Nalaz i izveštaj odmah posle pregleda
-          </li>
-          <li>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Savremena oprema za dijagnostiku na licu mesta
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kontakt">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Kontakt</span>
-      <h2>Zakaži pregled danas</h2>
-      <p>Pozovi nas ili pošalji poruku. Javljamo se u roku od 24 sata sa tačnim terminom.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="contact-info-list">
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <h4>Telefon</h4>
-              <p>011/ 400 100 - radnim danima od 8 do 20h</p>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <h4>Email</h4>
-              <p>zakazivanje@adonisbolnica.rs</p>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <h4>Adresa</h4>
-              <p>Bolnica se nalazi u Beogradu, u blizini centra grada, sa parkingom ispred ulaza.</p>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#467c45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-            </div>
-            <div>
-              <h4>Radno vreme</h4>
-              <p>Pon-pet 08-20h, subota 08-15h</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="placeholder-img map-placeholder" role="img" aria-label="Mapa sa lokacijom Adonis bolnice">
-          MAPA - LOKACIJA ADONIS BOLNICE
-        </div>
-      </div>
-
-      <div class="contact-form-card reveal">
-        <h3 style="margin-bottom: 24px; font-size: 1.3rem;">Pošalji zahtev za termin</h3>
-        <form action="#" method="post">
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label for="ime">Ime i prezime</label>
-              <input type="text" id="ime" name="ime" placeholder="Unesi ime i prezime" required>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label for="telefon">Telefon</label>
-              <input type="tel" id="telefon" name="telefon" placeholder="06x xxx xxxx" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="ime@primer.com">
-          </div>
-          <div class="form-group">
-            <label for="poruka">Za koji pregled te zanima termin</label>
-            <textarea id="poruka" name="poruka" placeholder="Opiši ukratko šta te muči ili koji pregled ti treba"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">Pošalji zahtev za termin</button>
-          <p class="form-note">Odgovaramo u roku od 24 sata sa predloženim terminom.</p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="final-cta">
-  <div class="wrap">
-    <div class="final-cta-inner reveal">
-      <h2>Ne čekaj da simptom postane problem</h2>
-      <p>Zakaži pregled danas i dobij termin kod specijaliste u roku od 24 sata, bez uputnica i bez redova.</p>
-      <a href="tel:+381114001000" class="btn btn-primary">Pozovi i zakaži termin</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#hero" class="logo">
-          <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
-            <circle cx="17" cy="17" r="15.5" stroke="#467c45" stroke-width="2"/>
-            <path d="M17 10V24M10 17H24" stroke="#467c45" stroke-width="2" stroke-linecap="round"/>
+    <div class="hero-vis">
+      <div class="tilt" id="tilt">
+        <figure class="fm" id="facemap">
+          <svg class="fm-svg" viewBox="250 0 700 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <image class="fm-img" href="assets/hero-lice.webp" x="0" y="0" width="1200" height="800"/>
+            <g class="fm-lines">
+              <ellipse class="d dash" pathLength="1" cx="592" cy="372" rx="246" ry="318" style="--i:0"/>
+              <line class="d" pathLength="1" x1="597" y1="16" x2="597" y2="784" style="--i:1"/>
+              <line class="d" pathLength="1" x1="330" y1="60" x2="880" y2="60" style="--i:2"/>
+              <line class="d" pathLength="1" x1="330" y1="222" x2="880" y2="222" style="--i:3"/>
+              <line class="d" pathLength="1" x1="330" y1="466" x2="880" y2="466" style="--i:4"/>
+              <line class="d" pathLength="1" x1="330" y1="682" x2="880" y2="682" style="--i:5"/>
+              <line class="d dash" pathLength="1" x1="404" y1="284" x2="792" y2="284" style="--i:6"/>
+              <line class="d" pathLength="1" x1="908" y1="60" x2="908" y2="682" style="--i:7"/>
+              <path class="d" pathLength="1" d="M900 60h16M900 222h16M900 466h16M900 682h16" style="--i:8"/>
+              <text x="920" y="146" style="--i:1">I</text>
+              <text x="920" y="350" style="--i:2">II</text>
+              <text x="920" y="580" style="--i:3">III</text>
+            </g>
           </svg>
-          Adonis bolnica
-        </a>
-        <p>Privatna zdravstvena ustanova u Beogradu. Pregledi, dijagnostika i specijalisti bez dugog čekanja.</p>
+          <button class="hs" data-proc="kapci" style="left:66%;top:31%;--i:0"><span class="pin"></span><span class="lbl">Kapci</span></button>
+          <button class="hs" data-proc="nos" style="left:50.4%;top:52.5%;--i:1"><span class="pin"></span><span class="lbl">Nos</span></button>
+          <button class="hs" data-proc="usne" style="left:56%;top:68.5%;--i:2"><span class="pin"></span><span class="lbl">Usne</span></button>
+          <button class="hs" data-proc="usi" style="left:84%;top:37.5%;--i:3"><span class="pin"></span><span class="lbl">Uši</span></button>
+          <button class="hs" data-proc="lice" style="left:73%;top:80%;--i:4"><span class="pin"></span><span class="lbl">Lice i vrat</span></button>
+          <button class="hs l hide-m" data-proc="morpheus" style="left:25%;top:49%;--i:5"><span class="pin"></span><span class="lbl">Koža i bore</span></button>
+        </figure>
+        <div class="fcard fc-open"><i class="dot" id="fcDot"></i><div><b id="fcOpen">Pon–Pet 08–20h</b><span id="fcOpenSub">Subotom 08–16h</span></div></div>
+        <div class="fcard fc-doc"><img src="assets/dr-milomir-gacevic.webp" alt="" width="48" height="48"><div><b>Ass. dr sci. med. Milomir Gačević</b>Specijalista plastične, estetske i rekonstruktivne hirurgije</div></div>
       </div>
-      <div class="footer-col">
-        <h4>Stranica</h4>
-        <ul>
-          <li><a href="#hero">Početna</a></li>
-          <li><a href="#usluge">Usluge</a></li>
-          <li><a href="#o-nama">O nama</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
+      <p class="fm-hint">Dodirnite tačku na licu i pogledajte proceduru</p>
+    </div>
+  </div>
+</section>
+
+<!-- BROJKE -->
+<section class="stats" aria-label="Bolnica Adonis u brojkama">
+  <div class="wrap">
+    <div class="stat rv"><b><span data-count="25">25</span><small>+</small></b><span>godina hirurškog iskustva dr Gačevića</span></div>
+    <div class="stat rv" style="--d:.1s"><b><span data-count="100">100</span><small>+</small></b><span>naučnih radova u domaćim i stranim časopisima</span></div>
+    <div class="stat rv" style="--d:.2s"><b><span data-count="16">16</span></b><span>procedura za lice, grudi, telo i anti-aging</span></div>
+    <div class="stat rv" style="--d:.3s"><b><span data-count="6">6</span></b><span>dana u nedelji radimo, i subotom</span></div>
+  </div>
+</section>
+
+<!-- ZAŠTO BOLNICA -->
+<section class="sec why" id="bolnica">
+  <div class="wrap">
+    <div class="why-media">
+      <img class="m1 rv-img" src="assets/nos-konsultacija.webp" alt="Hirurg pregleda nos pacijentkinje na konsultacijama" width="1200" height="841" loading="lazy" style="object-position:62% 50%">
+      <div class="note rv"><b>„Ovde smo za Vas”</b><span>Gundulićev venac 7, Beograd</span></div>
+    </div>
+    <div>
+      <div class="head">
+        <span class="eyebrow">Zašto Adonis</span>
+        <h2>Bolnica, ne samo ordinacija</h2>
+        <p class="lead"><span class="s">Zahvati koji traže opštu anesteziju i noćenje rade se pod istim krovom.</span><span class="s">Od prvog razgovora do skidanja konaca, vodi vas isti tim.</span></p>
       </div>
-      <div class="footer-col">
-        <h4>Kontakt</h4>
-        <ul>
-          <li><a href="tel:+381114001000">011/ 400 100</a></li>
-          <li><a href="mailto:zakazivanje@adonisbolnica.rs">zakazivanje@adonisbolnica.rs</a></li>
-          <li><a href="#kontakt">Beograd, Srbija</a></li>
+      <div class="cards">
+        <article class="card rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 18V8M3 14h18v4M21 18v-6a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg></span><h3>Hospitalizacija kad je potrebna</h3><p><span class="s">Posle zatezanja lica: dva dana.</span><span class="s">Posle zatezanja stomaka: 24 sata.</span></p></article>
+        <article class="card rv" style="--d:.08s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Specijalista na svakom zahvatu</h3><p><span class="s">Zahvat izvodi specijalista</span><span class="s">plastične i estetske hirurgije.</span></p></article>
+        <article class="card rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3c-1 4-4 9-4 12a4 4 0 0 0 8 0c0-3-3-8-4-12z"/></svg></span><h3>Iskustvo sa nosom i septumom</h3><p><span class="s">Oblik nosa i disanje rešavamo,</span><span class="s">kad je potrebno, u jednom aktu.</span></p></article>
+        <article class="card rv" style="--d:.08s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 10h2l1-2 2 4 1-2h2"/></svg></span><h3>InMode edukativni centar</h3><p><span class="s">BodyTite, FaceTite i Morpheus8,</span><span class="s">sa regionalnim edukatorom u timu.</span></p></article>
+        <article class="card rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4M12 8v4l3 2"/></svg></span><h3>Oporavak koji pratimo</h3><p><span class="s">Redovno pratimo vaš oporavak.</span><span class="s">Grudnjak dobijate u bolnici.</span></p></article>
+        <article class="card rv" style="--d:.08s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></span><h3>Opcije plaćanja i finansiranja</h3><p><span class="s">Nudimo različite opcije plaćanja.</span><span class="s">Detalje dobijate na konsultacijama.</span></p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCEDURE -->
+<section class="sec procs" id="procedure">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Naše usluge</span>
+      <h2>Sve procedure na jednom mestu</h2>
+      <p class="lead"><span class="s">Izaberite oblast i otvorite zahvat koji vas zanima.</span><span class="s">Uz svaki piše anestezija, trajanje i oporavak.</span></p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Oblasti" id="tabs" hidden>
+      <button class="tab" role="tab" aria-selected="true" aria-controls="p-lice" id="t-lice">Lice <small>5</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-grudi" id="t-grudi" tabindex="-1">Grudi <small>6</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-telo" id="t-telo" tabindex="-1">Telo <small>3</small></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-anti" id="t-anti" tabindex="-1">Anti-aging <small>2</small></button>
+    </div>
+    <div id="panels"></div>
+  </div>
+</section>
+
+<!-- INMODE -->
+<section class="sec dark inm" id="inmode">
+  <div class="wrap">
+    <div class="inm-fig">
+      <svg class="skin" id="skin" data-step="3" viewBox="0 0 480 520" role="img" aria-label="Presek kože: mikroiglice, radiofrekventna toplota i novi kolagen">
+        <defs>
+          <radialGradient id="g-heat"><stop offset="0" stop-color="#ffd9a8" stop-opacity=".95"/><stop offset=".45" stop-color="#e5b985" stop-opacity=".45"/><stop offset="1" stop-color="#e5b985" stop-opacity="0"/></radialGradient>
+          <linearGradient id="g-derm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c99a7a" stop-opacity=".32"/><stop offset="1" stop-color="#c99a7a" stop-opacity=".14"/></linearGradient>
+          <clipPath id="c-skin"><rect x="0" y="0" width="480" height="520" rx="24"/></clipPath>
+        </defs>
+        <g clip-path="url(#c-skin)">
+          <rect x="0" y="0" width="480" height="520" fill="#1d2023"/>
+          <rect x="0" y="300" width="480" height="220" fill="#e9c7a0" fill-opacity=".07"/>
+          <rect x="0" y="150" width="480" height="152" fill="url(#g-derm)"/>
+          <path class="epi" fill="#e9c7a0" fill-opacity=".42" d="M0 150 V122 C30 122 40 108 60 111 S90 128 110 122 S140 106 165 111 S200 130 225 121 S260 106 285 112 S320 129 345 121 S380 107 405 113 S440 128 480 120 V150 Z"/>
+          <line x1="0" y1="302" x2="480" y2="302" stroke="#e9c7a0" stroke-opacity=".25" stroke-dasharray="4 6"/>
+          <g class="loose" fill="none" stroke="#e9c7a0" stroke-opacity=".5" stroke-width="1.4">
+            <path d="M20 180 q30 -14 60 0 t60 0 t60 0"/><path d="M240 196 q30 14 60 0 t60 0 t60 0"/>
+            <path d="M60 232 q30 16 60 0 t60 0"/><path d="M260 250 q30 -16 60 0 t60 0 t60 0"/>
+            <path d="M30 276 q30 -12 60 0 t60 0 t60 0"/>
+          </g>
+          <g class="dense" fill="none" stroke="#f3dcc0" stroke-width="1.6" stroke-linecap="round">
+            <path pathLength="1" d="M16 172 C120 168 360 176 464 170"/><path pathLength="1" d="M16 192 C140 196 340 188 464 194"/>
+            <path pathLength="1" d="M16 212 C120 208 360 216 464 210"/><path pathLength="1" d="M16 232 C140 236 340 228 464 234"/>
+            <path pathLength="1" d="M16 252 C120 248 360 256 464 250"/><path pathLength="1" d="M16 272 C140 276 340 268 464 274"/>
+            <path pathLength="1" d="M16 290 C120 286 360 294 464 288"/>
+          </g>
+          <g fill="#e9c7a0" fill-opacity=".14" stroke="#e9c7a0" stroke-opacity=".45">
+            <circle class="cell" cx="40" cy="340" r="26"/><circle class="cell" cx="104" cy="350" r="30"/><circle class="cell" cx="172" cy="338" r="24"/><circle class="cell" cx="236" cy="352" r="30"/><circle class="cell" cx="304" cy="340" r="26"/><circle class="cell" cx="372" cy="350" r="30"/><circle class="cell" cx="440" cy="340" r="26"/>
+            <circle class="cell near" cx="56" cy="404" r="28"/><circle class="cell near" cx="124" cy="412" r="26"/><circle class="cell near" cx="190" cy="402" r="30"/><circle class="cell near" cx="258" cy="414" r="26"/><circle class="cell near" cx="324" cy="404" r="28"/><circle class="cell" cx="392" cy="412" r="26"/><circle class="cell" cx="456" cy="404" r="24"/>
+            <circle class="cell" cx="30" cy="468" r="26"/><circle class="cell" cx="98" cy="476" r="30"/><circle class="cell" cx="166" cy="466" r="26"/><circle class="cell" cx="234" cy="478" r="28"/><circle class="cell" cx="300" cy="468" r="26"/><circle class="cell" cx="366" cy="478" r="30"/><circle class="cell" cx="436" cy="468" r="28"/>
+          </g>
+          <g class="heat h1">
+            <circle cx="120" cy="226" r="34" fill="url(#g-heat)"/><circle cx="180" cy="226" r="34" fill="url(#g-heat)"/><circle cx="240" cy="226" r="34" fill="url(#g-heat)"/><circle cx="300" cy="226" r="34" fill="url(#g-heat)"/><circle cx="360" cy="226" r="34" fill="url(#g-heat)"/>
+          </g>
+          <g class="needles">
+            <rect x="88" y="0" width="304" height="36" rx="12" fill="#f1ede7"/>
+            <rect x="88" y="28" width="304" height="8" fill="#b4acae"/>
+            <rect class="n" x="119" y="36" width="2" height="130" fill="#f1ede7"/><rect class="n" x="179" y="36" width="2" height="130" fill="#f1ede7"/><rect class="n" x="239" y="36" width="2" height="130" fill="#f1ede7"/><rect class="n" x="299" y="36" width="2" height="130" fill="#f1ede7"/><rect class="n" x="359" y="36" width="2" height="130" fill="#f1ede7"/>
+          </g>
+          <g class="probe">
+            <ellipse class="phot" cx="300" cy="408" rx="150" ry="60" fill="url(#g-heat)"/>
+            <rect x="-40" y="402" width="348" height="12" rx="6" fill="#f1ede7"/>
+            <rect x="-40" y="390" width="72" height="36" rx="8" fill="#b4acae"/>
+          </g>
+          <g class="lift" fill="none" stroke="#e9c7a0" stroke-width="1.6" stroke-linecap="round">
+            <path d="M440 96 V64 M430 74 l10 -10 l10 10"/><path d="M40 96 V64 M30 74 l10 -10 l10 10"/>
+          </g>
+          <text x="16" y="140">EPIDERMIS</text>
+          <text x="16" y="164" opacity=".9">DERMIS · KOLAGEN</text>
+          <text x="16" y="508">MASNO TKIVO</text>
+        </g>
+      </svg>
+    </div>
+    <div class="inm-steps">
+      <div class="inm-intro">
+        <span class="eyebrow">InMode edukativni centar</span>
+        <h2>Zatezanje kože toplotom iz dubine</h2>
+        <p class="lead"><span class="s">Radiofrekventna energija zagreva tkivo ispod kože.</span><span class="s">Koža se zateže, a masne naslage se tope.</span></p>
+      </div>
+      <div class="step" data-s="1">
+        <span class="num">01</span>
+        <span class="tag">Morpheus 8</span>
+        <h3>Mikroiglice ulaze na tačnu dubinu</h3>
+        <p><span class="s">Mikroiglice prodiru u kožu na unapred podešenu dubinu.</span><span class="s">Kroz mikroskopske kanale ide radiofrekventna energija.</span></p>
+      </div>
+      <div class="step" data-s="2">
+        <span class="num">02</span>
+        <span class="tag">BodyTite · FaceTite</span>
+        <h3>Toplota topi masne naslage</h3>
+        <p><span class="s">Sonda kroz male rezove zagreva potkožno tkivo.</span><span class="s">Rastopljene naslage se odmah i usisavaju.</span></p>
+      </div>
+      <div class="step" data-s="3">
+        <span class="num">03</span>
+        <span class="tag">Rezultat</span>
+        <h3>Nov kolagen zateže kožu</h3>
+        <p><span class="s">Prvi rezultati se vide posle dve do tri nedelje.</span><span class="s">Potpun rezultat posle tri do šest meseci.</span></p>
+        <div class="inm-edu">
+          <div class="ph"><img src="assets/inmode-sonda.webp" alt="InMode sonda u ruci specijaliste" width="96" height="120" loading="lazy"><img src="assets/inmode-uredjaj.webp" alt="InMode RF uređaj u Bolnici Adonis" width="104" height="128" loading="lazy"></div>
+          <div><b>Spec. dr med. Ivona Gačević</b><p><span class="s">Jedini regionalni edukator za ove procedure.</span><span class="s">Bolnica je edukativni centar za InMode.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPORAVAK -->
+<section class="sec rec" id="oporavak">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Planer oporavka</span>
+      <h2>Koliko traje oporavak?</h2>
+      <p class="lead"><span class="s">Izaberite zahvat i pogledajte okviran tok oporavka.</span><span class="s">Tačan plan za vas dobijate na konsultacijama.</span></p>
+    </div>
+    <div class="pick" id="pick" role="group" aria-label="Izaberite zahvat"></div>
+    <div class="planner rv" id="planner" aria-live="polite">
+      <div class="pl-top">
+        <h3 id="plName">Operacija nosa</h3>
+        <div class="k"><span>Anestezija</span><b id="plAn">Opšta</b></div>
+        <div class="k"><span>Trajanje</span><b id="plDur">–</b></div>
+        <div class="k"><span>U bolnici</span><b id="plStay">–</b></div>
+      </div>
+      <div class="track" id="track"><div class="base"></div><div class="fill" id="fill"></div></div>
+      <ol class="ml" id="ml"></ol>
+      <div class="pl-note"><span>Okvirni rokovi prema opisima zahvata. Oporavak zavisi od zahvata i od vas.</span><a class="btn-3" href="#kontakt">Pitajte hirurga <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section class="sec team" id="tim">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Naš tim</span>
+      <h2>Dvoje specijalista, jedan standard</h2>
+      <p class="lead"><span class="s">Tim vode dvoje specijalista plastične, estetske i rekonstruktivne hirurgije.</span><span class="s">Pomažu vam da razumete svaki korak procedure.</span></p>
+    </div>
+    <div class="docs">
+      <article class="doc rv">
+        <div class="ph"><img src="assets/dr-milomir-gacevic.webp" alt="Ass. dr sci. med. Milomir Gačević u ordinaciji" width="1080" height="882" loading="lazy"></div>
+        <div class="doc-b">
+          <span class="role">Plastični hirurg · doktor nauka</span>
+          <h3>Ass. dr sci. med. Milomir Gačević</h3>
+          <p><span class="s">Preko 25 godina hirurškog iskustva i autor više od 100 naučnih radova.</span><span class="s">Redovan predavač na međunarodnim i regionalnim kongresima.</span></p>
+          <div class="facts"><span class="chip">Rinoplastika</span><span class="chip">Grudi</span><span class="chip">Facelift</span><span class="chip">Abdominoplastika</span><span class="chip">Liposukcija</span></div>
+          <details>
+            <summary>Biografija, edukacija i članstva</summary>
+            <p class="tl-h">Edukacija i kongresi</p>
+            <ul class="tl">
+              <li><b>2006.</b>Milano, kurs iz rekonstruktivne hirurgije dojki</li>
+              <li><b>2007.</b>Rim, kurs iz hirurgije nosa i lica</li>
+              <li><b>2012.</b>Rim, Master Class iz hirurgije dojke</li>
+              <li><b>2016.</b>London, Master Class o anti-aging metodama</li>
+              <li><b>2018, 2023.</b>Milano, Master Class o hirurgiji nosa</li>
+              <li><b>2019.</b>Majami, Svetski kongres plastičnih hirurga</li>
+              <li><b>2022, 2023.</b>Istanbul i Atina, Svetski kongres plastičnih hirurga</li>
+            </ul>
+            <p class="tl-h">Akademska karijera</p>
+            <ul class="tl">
+              <li><b>2012.</b>Doktor medicinskih nauka, Medicinski fakultet VMA</li>
+              <li><b>od 2006.</b>Asistent na predmetu plastična hirurgija, MF VMA</li>
+              <li><b>2005.</b>Magistar medicinskih nauka, rekonstruktivna hirurgija</li>
+              <li><b>2002–04.</b>Načelnik kabineta za plastičnu hirurgiju</li>
+              <li><b>1998.</b>Specijalista plastične i rekonstruktivne hirurgije</li>
+            </ul>
+            <p class="tl-h">Članstva</p>
+            <ul class="tl">
+              <li><b>Udruženja</b>Srpsko, Balkansko, Evropsko i Svetsko udruženje hirurga plastičara; Udruženje estetskih hirurga Mediterana i&nbsp;sveta</li>
+            </ul>
+          </details>
+        </div>
+      </article>
+      <article class="doc rv" style="--d:.12s">
+        <div class="ph"><img src="assets/dr-ivona-gacevic.webp" alt="Spec. dr med. Ivona Gačević u operacionoj sali" width="1080" height="874" loading="lazy" style="object-position:30% 30%"></div>
+        <div class="doc-b">
+          <span class="role">Plastični hirurg · InMode edukator</span>
+          <h3>Spec. dr med. Ivona Gačević</h3>
+          <p><span class="s">Predavač na kongresima o konturisanju lica i tela.</span><span class="s">Regionalni edukator za Morpheus8 i BodyTite.</span></p>
+          <div class="facts"><span class="chip">Morpheus8</span><span class="chip">BodyTite</span><span class="chip">FaceTite</span><span class="chip">Konturisanje lica i tela</span></div>
+          <details>
+            <summary>Više o radu sa InMode tehnologijom</summary>
+            <p class="tl-h">Edukacija</p>
+            <ul class="tl">
+              <li><b>InMode</b>Bolnica Adonis je edukativni centar za InMode tehnologiju, a dr Ivona Gačević jedini regionalni edukator za BodyTite, FaceTite i Morpheus8.</li>
+              <li><b>Kongresi</b>Predavač na domaćim i međunarodnim kongresima na temu konturisanja lica i tela.</li>
+            </ul>
+          </details>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCES -->
+<section class="sec" id="proces">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Proces vašeg tretmana</span>
+      <h2>Četiri koraka, bez nagađanja</h2>
+    </div>
+    <ol class="steps4" id="steps4">
+      <li class="st4 rv"><span class="n">1</span><h3>Konsultacije</h3><p><span class="s">Razgovaramo o vašim željama</span><span class="s">i zdravstvenom stanju.</span></p></li>
+      <li class="st4 rv" style="--d:.12s"><span class="n">2</span><h3>Planiranje</h3><p><span class="s">Pravimo plan tretmana</span><span class="s">prilagođen baš vama.</span></p></li>
+      <li class="st4 rv" style="--d:.24s"><span class="n">3</span><h3>Izvođenje</h3><p><span class="s">Zahvat izvodi specijalista plastične,</span><span class="s">estetske i rekonstruktivne hirurgije.</span></p></li>
+      <li class="st4 rv" style="--d:.36s"><span class="n">4</span><h3>Oporavak i praćenje</h3><p><span class="s">Posle zahvata redovno pratimo</span><span class="s">vaš oporavak.</span></p></li>
+    </ol>
+    <div class="prep rv">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/></svg></span>
+      <div><b>Kako da se pripremite za konsultacije</b><p><span class="s">Sastavite listu pitanja koja želite da postavite specijalisti.</span><span class="s">Otvoren razgovor o očekivanjima ključan je za dobar rezultat.</span></p></div>
+      <a class="btn btn-2" href="#kontakt">Zakažite razgovor</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRISTUP -->
+<section class="sec appr" style="background:var(--paper)">
+  <div class="wrap">
+    <div class="txt rv">
+      <span class="eyebrow">Naša estetska umetnost</span>
+      <h2>Rezultat koji deluje maksimalno prirodno</h2>
+      <p class="lead"><span class="s">Pomažemo vam da istaknete svoju prirodnu lepotu.</span><span class="s">Zategnutiji i vitalniji izgled, bez preteranog efekta.</span></p>
+      <a class="btn-3" href="#procedure">Pogledajte sve procedure <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+    </div>
+    <div class="m m1 rv-img"><img src="assets/anti-aging.webp" alt="Žena u laganoj tkanini, simbol prirodnog izgleda" width="800" height="1200" loading="lazy"></div>
+    <div class="m m2 rv-img"><img src="assets/profil.webp" alt="Profil lica u crno-beloj fotografiji" width="1000" height="1500" loading="lazy"></div>
+  </div>
+  <div class="marq" aria-hidden="true"><div class="marq-in"><span>Operacija nosa</span><span>Povećanje grudi</span><span>Zatezanje lica i vrata</span><span>Liposukcija</span><span>BodyTite</span><span>Morpheus 8</span><span>Operacija kapaka</span><span>Hijaluronski fileri</span><span>Operacija nosa</span><span>Povećanje grudi</span><span>Zatezanje lica i vrata</span><span>Liposukcija</span><span>BodyTite</span><span>Morpheus 8</span><span>Operacija kapaka</span><span>Hijaluronski fileri</span></div></div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq" id="pitanja">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Česta pitanja</span>
+      <h2>Pitanja o estetskoj i plastičnoj hirurgiji</h2>
+      <p class="lead"><span class="s">Ne vidite svoje pitanje?</span><span class="s">Pozovite nas na 011 354 27 85.</span></p>
+    </div>
+    <div class="qa">
+      <details class="rv"><summary>Da li su zahvati estetske hirurgije bolni?</summary><p>Većina zahvata u Bolnici Adonis obavlja se u lokalnoj ili opštoj anesteziji, pa tokom samog zahvata nećete osećati bol. Posle zahvata može doći do nelagodnosti, koja se kontroliše propisanim lekovima protiv bolova. Pre zahvata dobićete uputstva o kontroli bola i nezi tokom oporavka.</p></details>
+      <details class="rv"><summary>Koliko dugo traje oporavak posle plastične hirurgije?</summary><p>Oporavak zavisi od vrste zahvata i od samog pacijenta. Većina pacijenata se normalnim aktivnostima vraća za nekoliko nedelja, a potpuni oporavak i konačan rezultat mogu da traju nekoliko meseci. Okvirne rokove po zahvatu vidite u planeru oporavka iznad, a na konsultacijama će vam hirurg reći šta da očekujete.</p></details>
+      <details class="rv"><summary>Kako da znam da li je zahvat pravi izbor za mene?</summary><p>Odluka o estetskom ili plastičnom zahvatu je lična. Na konsultacijama hirurg razgovara sa vama o vašim ciljevima, očekivanjima i zdravstvenom stanju i predlaže opcije koje odgovaraju vašim potrebama. Pre odluke treba da znate sve o zahvatu, uključujući moguće rizike.</p></details>
+      <details class="rv"><summary>Kako da izaberem pravog hirurga?</summary><p>Izbor pravog plastičnog hirurga ključan je za uspeh operacije. Hirurzi u našoj bolnici imaju odgovarajuće sertifikate i bogato iskustvo, a redovni su učesnici i predavači na svetskim, evropskim i regionalnim kongresima.</p></details>
+      <details class="rv"><summary>Da li posle povećanja grudi mogu da dojim?</summary><p>Posle operacije povećanja grudi funkcija mlečne žlezde je očuvana, pa buduće majke mogu normalno da doje. Implantat ne otežava dijagnostičke metode kao što su mamografija ili rendgen.</p></details>
+      <details class="rv"><summary>Koliko traju rezultati hijaluronskih filera?</summary><p>Efekat je vidljiv odmah posle tretmana. Rezultati zavise od tretirane regije i obično traju od 6 meseci do 2 godine. Svakodnevne aktivnosti nastavljate odmah, a nekoliko dana treba izbegavati naporne vežbe, saunu i direktno sunce.</p></details>
+      <details class="rv"><summary>Kakve su opcije finansiranja?</summary><p>Bolnica Adonis nudi različite opcije plaćanja i finansiranja. Detaljne informacije dobićete na konsultacijama.</p></details>
+      <details class="rv"><summary>Kako da zakažem konsultacije?</summary><p>Konsultacije možete zakazati telefonom, na 011 354 27 85 ili 062 404 564, ili mejlom na adonisbolnica@gmail.com. Radno vreme je od ponedeljka do petka od 8 do 20h i subotom od 8 do 16h.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta dark">
+  <div class="wrap">
+    <div>
+      <h2>Prvi korak je razgovor</h2>
+      <p class="lead"><span class="s">Na konsultacijama saznajete sve o zahvatu, uključujući moguće rizike.</span><span class="s">Odluku donosite tek kad imate sve odgovore.</span></p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-1" href="tel:+381113542785">Pozovite 011 354 27 85</a>
+      <a class="btn btn-2" href="tel:+38162404564">062 404 564</a>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="sec ct" id="kontakt">
+  <div class="wrap">
+    <div class="ct-info">
+      <div class="head" style="margin-bottom:16px">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Zakažite konsultacije</h2>
+      </div>
+      <div class="ct-card rv"><span>Telefon</span><a href="tel:+381113542785">011 354 27 85</a><a href="tel:+38162404564">062 404 564</a></div>
+      <div class="ct-card rv"><span>Email</span><a href="mailto:adonisbolnica@gmail.com">adonisbolnica@gmail.com</a></div>
+      <div class="ct-card rv"><span>Adresa</span><b>Gundulićev venac 7, 11000 Beograd</b></div>
+      <div class="ct-card rv"><span>Radno vreme</span>
+        <ul class="hours" id="hours">
+          <li data-d="1-5"><span>Ponedeljak – Petak</span><span>08–20h</span></li>
+          <li data-d="6"><span>Subota</span><span>08–16h</span></li>
+          <li data-d="0"><span>Nedelja</span><span>Ne radimo</span></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Adonis bolnica. Sva prava zadržana.</span>
-      <span>Privatna zdravstvena ustanova</span>
+    <div class="map rv-img">
+      <iframe title="Mapa: Bolnica Adonis, Gundulićev venac 7, Beograd" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Gunduli%C4%87ev%20venac%207%2C%20Beograd&z=16&output=embed"></iframe>
     </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div>
+      <img src="assets/logo-beli.png" alt="Adonis bolnica" width="220" height="54" loading="lazy">
+      <p>Bolnica za plastičnu, estetsku i rekonstruktivnu hirurgiju u Beogradu.</p>
+    </div>
+    <div><h4>Procedure</h4><ul><li><a href="#procedure" data-tab="lice">Lice</a></li><li><a href="#procedure" data-tab="grudi">Grudi</a></li><li><a href="#procedure" data-tab="telo">Telo</a></li><li><a href="#procedure" data-tab="anti">Anti-aging</a></li></ul></div>
+    <div><h4>Bolnica</h4><ul><li><a href="#tim">Naš tim</a></li><li><a href="#inmode">InMode</a></li><li><a href="#oporavak">Oporavak</a></li><li><a href="#pitanja">Česta pitanja</a></li></ul></div>
+    <div><h4>Kontakt</h4><ul><li><a href="tel:+381113542785">011 354 27 85</a></li><li><a href="tel:+38162404564">062 404 564</a></li><li><a href="mailto:adonisbolnica@gmail.com">adonisbolnica@gmail.com</a></li><li>Gundulićev venac 7, Beograd</li></ul></div>
+    <div class="bottom"><span>© 2026 Bolnica Adonis. Sva prava zadržana.</span><span>Pon–Pet 08–20h · Sub 08–16h</span></div>
   </div>
 </footer>
 
+<dialog class="pd" id="pd" aria-labelledby="pdName">
+  <button class="pd-x" id="pdX" aria-label="Zatvori"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+  <div class="pd-in">
+    <div class="pd-img"><img id="pdImg" src="" alt=""></div>
+    <div class="pd-b">
+      <span class="cat" id="pdCat"></span>
+      <h3 id="pdName"></h3>
+      <p class="desc" id="pdDesc"></p>
+      <ul class="pd-f" id="pdFacts"></ul>
+      <div class="btns">
+        <a class="btn btn-1" href="tel:+381113542785">Zakažite konsultacije</a>
+        <a class="btn btn-2" id="pdRec" href="#oporavak">Pogledajte oporavak</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <script>
-  // Header scroll effect
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
+(function(){
+var CAT={lice:{n:'Lice',img:'assets/lice-pregled.webp',alt:'Specijalista pregleda lice pacijentkinje'},grudi:{n:'Grudi',img:'assets/grudi-implant.webp',alt:'Pacijentkinja drži silikonski implantat'},telo:{n:'Telo',img:'assets/telo-silueta.webp',alt:'Silueta tela u crnom bodiju'},anti:{n:'Anti-aging',img:'assets/morpheus8-tretman.webp',alt:'Morpheus 8 tretman lica u Bolnici Adonis'}};
+/* Sve činjenice su sa stranica usluga na adonisbolnica.rs */
+var P={
+ lice:{c:'lice',n:'Zatezanje lica i vrata',img:'assets/vrat.webp',d:['Podižu se mišići lica, uklanja višak kože i jače bore.','Najčešće se radi posle 40. godine.'],chips:['Opšta anestezija','2 dana u bolnici'],an:'Opšta',dur:'Po planu hirurga',stay:'2 dana',f:[['Anestezija','Opšta'],['U bolnici','Dva dana hospitalizacije'],['Zavoj','3–4 dana, zatim elastična maska'],['Konci','Oko 12. dana, ispred uha najčešće resorptivni'],['Kombinacije','Liposukcija podbratka ili FaceTite']],t:[[0,'Zahvat','dan 0'],[2,'Odlazak kući','2. dan'],[4,'Elastična maska','posle 3–4 dana'],[12,'Skidanje konaca','oko 12. dana']]},
+ kapci:{c:'lice',n:'Operacija kapaka',img:'assets/kapci.webp',d:['Uklanja se višak kože i masnog tkiva gornjih ili donjih kapaka.','Zahvat nije bolan i istog dana idete kući.'],chips:['Lokalna anestezija','Isti dan kući'],an:'Najčešće lokalna',dur:'Po planu hirurga',stay:'Istog dana kući',f:[['Anestezija','Najčešće lokalna, zahvat nije bolan'],['U bolnici','Istog dana idete kući'],['Otoci','Uglavnom nestaju za desetak dana'],['Konci','5–7 dana posle operacije'],['Ožiljak','Gotovo nevidljiv za nekoliko nedelja']],t:[[0,'Zahvat i odlazak kući','dan 0'],[6,'Skidanje konaca','5–7 dana'],[10,'Otoci se povlače','oko 10 dana'],[30,'Ožiljak gotovo nevidljiv','nekoliko nedelja']]},
+ nos:{c:'lice',n:'Operacija nosa',img:'assets/nos-konsultacija.webp',d:['Estetska i funkcionalna korekcija, kad je potrebno u jednom aktu.','Koriste se unutrašnji rezovi koji su nevidljivi.'],chips:['Opšta anestezija','Nevidljivi rezovi'],an:'Opšta (vrh nosa nekad lokalna)',dur:'Po planu hirurga',stay:'Po proceni hirurga',f:[['Anestezija','Opšta; samo vrh nosa nekad u lokalnoj'],['Rezovi','Uglavnom unutrašnji, nevidljivi'],['Tamponi','Vade se 3, 5. ili 7. dana'],['Posao','Lakši poslovi posle nedelju dana'],['Napomena','Dve nedelje bez većih napora, mesec dana bez sunca i naočara']],t:[[0,'Zahvat','dan 0'],[5,'Vađenje tampona','3, 5. ili 7. dan'],[7,'Lakši poslovi','posle 7 dana'],[14,'Veći napori','posle 2 nedelje'],[30,'Sunce i naočare','posle mesec dana']]},
+ usne:{c:'lice',n:'Povećanje usana',img:'assets/usne-filer.webp',d:['Hijaluronski fileri ili transfer sopstvenog masnog tkiva.','Radi se tankim iglama, u lokalnoj anesteziji.'],chips:['Lokalna anestezija','1–2 dana odmora'],an:'Lokalna',dur:'Kratak tretman',stay:'Istog dana kući',f:[['Anestezija','Lokalna, specijalne tanke igle'],['Metode','Hijaluronski fileri ili transfer masnog tkiva'],['Odmor','Jedan do dva dana, uz hladne obloge'],['Konačan oblik','Posle dve nedelje'],['Trajanje','Filer obično 6–12 meseci']],t:[[0,'Tretman','dan 0'],[2,'Kraj odmora','1–2 dana'],[14,'Konačan oblik','posle 2 nedelje'],[270,'Efekat filera','6–12 meseci']]},
+ usi:{c:'lice',n:'Operacija ušiju',img:'assets/profil.webp',d:['Koriguje oblik i položaj ušiju, kod dece i odraslih.','Zahvat traje oko sat vremena.'],chips:['Oko 1 sat','Povratak za 7 dana'],an:'Lokalna (deca opšta)',dur:'Oko 1 sat',stay:'Po proceni hirurga',f:[['Anestezija','Lokalna kod odraslih, opšta kod dece'],['Trajanje','Oko sat vremena'],['Zavoj','Sledeći dan ga menja elastična traka, 7 dana'],['Obaveze','Povratak posle sedam dana'],['Potpun oporavak','Oko dve nedelje']],t:[[0,'Zahvat','dan 0'],[1,'Elastična traka','sledeći dan'],[7,'Povratak obavezama','posle 7 dana'],[14,'Potpun oporavak','oko 2 nedelje']]},
+ povecanje:{c:'grudi',n:'Operacija povećanja grudi',img:'assets/grudi-implant.webp',d:['Anatomski, okrugli ili ergonomski implantati, prema vašem cilju.','Zahvat traje 45 minuta do sat vremena.'],chips:['Opšta anestezija','45–60 min'],an:'Opšta endotrahealna',dur:'45–60 minuta',stay:'Po proceni hirurga',f:[['Anestezija','Opšta endotrahealna'],['Trajanje','Oko 45 minuta do sat vremena'],['Pristup','Ispod dojke, oko bradavice ili kroz pazuh'],['Konci','Oko 12. dana ili resorptivni'],['Grudnjak','Mesec dana, dobijate ga u bolnici'],['Dojenje','Funkcija mlečne žlezde je očuvana']],t:[[0,'Zahvat','dan 0'],[3,'Lakše aktivnosti','za nekoliko dana'],[12,'Konci, otoci prolaze','oko 12. dana'],[30,'Kraj nošenja grudnjaka','mesec dana']]},
+ podizanjepov:{c:'grudi',n:'Podizanje sa povećanjem grudi',img:'assets/grudi-implant.webp',d:['Vraća lep i popunjen dekolte posle dojenja ili promena težine.','Uz implantat se po potrebi koristi i sopstveno masno tkivo.'],chips:['Opšta anestezija','2–3 sata'],an:'Opšta',dur:'2–3 sata',stay:'Po proceni hirurga',f:[['Anestezija','Opšta'],['Trajanje','Oko 2–3 sata'],['Otoci','Povlače se za desetak dana'],['Konci','Oko areole 10 dana, najčešće resorptivni'],['Ožiljci','Manje vidljivi posle nekoliko meseci']],t:[[0,'Zahvat','dan 0'],[10,'Konci, otoci prolaze','oko 10 dana'],[120,'Ožiljci bleđi','nekoliko meseci']]},
+ mastopeksija:{c:'grudi',n:'Mastopeksija – podizanje grudi',img:'assets/grudi-implant.webp',d:['Podizanje grudi bez implantata, sopstvenim tkivom.','Plan se pravi prema vašim potrebama i građi.'],chips:['Bez implantata','Individualni plan'],f:[['Anestezija','Zahvat se izvodi u anesteziji'],['Plan','Individualan, prema vašoj građi i cilju'],['Konsultacije','Upitnik o zdravlju i ciljevima, pa razgovor sa hirurgom'],['Oporavak','Podrška i saveti za brz oporavak']]},
+ smanjenje:{c:'grudi',n:'Smanjenje i podizanje grudi',img:'assets/grudi-implant.webp',d:['Smanjuje i podiže velike i opuštene grudi.','Rešava i estetski i svakodnevni problem.'],chips:['Opšta anestezija','2–3 dana u bolnici'],an:'Opšta',dur:'2–3 sata',stay:'2–3 dana',f:[['Anestezija','Opšta'],['Trajanje','Oko 2–3 sata'],['U bolnici','Kući za dva do tri dana'],['Konci','Oko 10. dana'],['Grudnjak','Obavezno mesec dana, dobijate ga u bolnici']],t:[[0,'Zahvat','dan 0'],[3,'Odlazak kući','2–3 dana'],[10,'Skidanje konaca','oko 10. dana'],[30,'Kraj nošenja grudnjaka','mesec dana']]},
+ rekonstrukcija:{c:'grudi',n:'Rekonstrukcija dojke',img:'assets/grudi-implant.webp',d:['Najčešće posle mastektomije, da se vrati oblik dojke.','Posle zahvata ostajete u bolnici dva do pet dana.'],chips:['2–5 dana u bolnici','Konci 12. dana'],an:'Po planu hirurga',dur:'Po planu hirurga',stay:'2–5 dana',f:[['Kada','Najčešće posle mastektomije'],['U bolnici','Dva do pet dana'],['Konci','Dvanaestog dana'],['Povratak','Ubrzo posle skidanja konaca']],t:[[0,'Zahvat','dan 0'],[4,'Odlazak kući','2–5 dana'],[12,'Skidanje konaca','12. dan'],[20,'Svakodnevne aktivnosti','ubrzo posle']]},
+ ginekomastija:{c:'grudi',n:'Ginekomastija',img:'assets/telo-svetlo.webp',d:['Uklanja višak tkiva i vraća ravne muške grudi.','Tehnika zavisi od toga da li je u pitanju žlezda ili masno tkivo.'],chips:['Za muškarce','Oporavak oko 2 nedelje'],an:'Po planu hirurga',dur:'Po planu hirurga',stay:'Po proceni hirurga',f:[['Tehnika','Liposukcija, uklanjanje žlezde ili kombinacija'],['Rez','Obično na ivici areole'],['Zavoj','Kompresivni, nekoliko dana'],['Otoci','Nestaju za oko dve nedelje'],['Šavovi','Uklanjaju se oko dve nedelje']],t:[[0,'Zahvat','dan 0'],[4,'Kompresivni zavoj','nekoliko dana'],[14,'Otoci prolaze, šavovi','oko 2 nedelje']]},
+ lipo:{c:'telo',n:'Liposukcija',img:'assets/telo-silueta.webp',d:['Vibraciona liposukcija za naslage koje ne reaguju na dijetu.','Precizno, uz minimalne ožiljke i brži oporavak.'],chips:['Vibraciona tehnika','Uz BodyTite'],f:[['Tehnika','Vibraciona liposukcija'],['Regije','Stomak, slabine, leđa, ruke, podbradak'],['Prednost','Minimalni ožiljci i brži oporavak'],['Kombinacija','Često uz BodyTite, za zatezanje kože']]},
+ bodytite:{c:'telo',n:'BodyTite tretman',img:'assets/inmode-uredjaj.webp',d:['Radiofrekventna energija topi masne naslage i zateže kožu.','Stomak, leđa, butine, ruke, kolena i potkolenice.'],chips:['Bez velikih rezova','Povratak za par dana'],an:'Po planu hirurga',dur:'Po regiji',stay:'Po proceni hirurga',f:[['Kako radi','Sonda kroz male rezove zagreva tkivo i usisava rastopljene naslage'],['Regije','Stomak, leđa, butine, ruke, kolena, potkolenice'],['Posle','Kompresivni zavoj'],['Povratak','Nakon nekoliko dana'],['Edukator','Dr Ivona Gačević, jedini regionalni edukator']],t:[[0,'Tretman','dan 0'],[4,'Svakodnevne aktivnosti','nakon nekoliko dana'],[135,'Kolagen se obnavlja','narednih meseci']]},
+ stomak:{c:'telo',n:'Zatezanje stomaka',img:'assets/telo-svetlo.webp',d:['Uklanja višak kože i potkožnog tkiva stomaka.','Ožiljak je na liniji carskog reza, ispod kupaćeg.'],chips:['Opšta anestezija','24h u bolnici'],an:'Uglavnom opšta',dur:'2–4 sata',stay:'24 sata',f:[['Anestezija','Uglavnom opšta'],['Trajanje','2–4 sata'],['U bolnici','24 sata'],['Steznik','Prve dve nedelje, tada se skidaju i konci'],['Aktivnosti','Skoro sve od 15. dana'],['Kombinacija','Liposukcija bedara, butina, kolena, zadnjice']],t:[[0,'Zahvat','dan 0'],[1,'Odlazak kući','posle 24 sata'],[14,'Steznik i konci','2 nedelje'],[15,'Skoro sve aktivnosti','od 15. dana']]},
+ morpheus:{c:'anti',n:'Morpheus 8 tretman',img:'assets/morpheus8-tretman.webp',d:['Mikroiglice i radiofrekvencija zatežu i remodeluju kožu.','Za bore, ožiljke od akni, strije i opuštenu kožu.'],chips:['Lice i telo','Prvi efekat za 2–3 nedelje'],an:'Uz anesteziju',dur:'Po regiji',stay:'Istog dana kući',f:[['Kako radi','Mikroiglice na podešenoj dubini + RF energija'],['Za šta','Bore, ožiljci od akni, strije, opuštena koža'],['Prvi rezultati','Posle 2–3 nedelje'],['Potpun rezultat','Posle 3–6 meseci']],t:[[0,'Tretman','dan 0'],[18,'Prvi rezultati','2–3 nedelje'],[135,'Potpun rezultat','3–6 meseci']]},
+ fileri:{c:'anti',n:'Hijaluronski fileri',img:'assets/fileri-priprema.webp',d:['Vraćaju volumen i ublažavaju bore, uz odmah vidljiv efekat.','Svakodnevne aktivnosti nastavljate odmah posle tretmana.'],chips:['Odmah vidljivo','Traje 6 meseci do 2 godine'],an:'Po potrebi',dur:'Kratak tretman',stay:'Istog dana kući',f:[['Efekat','Odmah vidljiv'],['Trajanje','Obično od 6 meseci do 2 godine'],['Posle','Odmah nastavljate aktivnosti'],['Nekoliko dana','Bez napornih vežbi, saune i direktnog sunca'],['Nega','SPF zaštita narednih nekoliko nedelja']],t:[[0,'Tretman i efekat','odmah'],[4,'Sauna i vežbe','posle par dana'],[365,'Efekat traje','6 meseci do 2 god.']]}
+};
+var ORDER={lice:['lice','kapci','nos','usne','usi'],grudi:['povecanje','podizanjepov','mastopeksija','smanjenje','rekonstrukcija','ginekomastija'],telo:['lipo','bodytite','stomak'],anti:['morpheus','fileri']};
+var arr='<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M9 3l5 5-5 5"/></svg>';
 
-  // Mobile menu toggle
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+/* Paneli procedura */
+var panels=document.getElementById('panels'),h='';
+Object.keys(ORDER).forEach(function(c,ci){
+  var C=CAT[c];
+  h+='<div class="panel" role="tabpanel" id="p-'+c+'" aria-labelledby="t-'+c+'"'+(ci?' hidden':'')+'><figure class="panel-img rv-img"><img src="'+C.img+'" alt="'+C.alt+'" loading="lazy"><figcaption>'+C.n+'</figcaption></figure><ul class="plist">';
+  ORDER[c].forEach(function(k){var p=P[k];
+    h+='<li><button class="prow" data-proc="'+k+'"><h3>'+p.n+'</h3><p><span class="s">'+p.d[0]+'</span><span class="s">'+p.d[1]+'</span></p><span class="meta">'+p.chips.map(function(x){return '<span class="chip">'+x+'</span>'}).join('')+'</span><span class="go" aria-hidden="true">'+arr+'</span></button></li>';
   });
+  h+='</ul></div>';
+});
+panels.innerHTML=h;
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+document.getElementById('tabs').hidden=false;
+function selTab(t){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+  var img=document.querySelector('#'+t.getAttribute('aria-controls')+' .rv-img');if(img)img.classList.add('in');}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){selTab(t)});t.addEventListener('keydown',function(e){var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){var n=tabs[(i+d+tabs.length)%tabs.length];selTab(n);n.focus()}})});
+document.querySelectorAll('[data-tab]').forEach(function(a){a.addEventListener('click',function(){selTab(document.getElementById('t-'+a.dataset.tab))})});
 
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-    });
-  });
+/* Dijalog */
+var dlg=document.getElementById('pd');
+function openProc(k){var p=P[k];if(!p)return;
+  document.getElementById('pdImg').src=p.img;document.getElementById('pdImg').alt=p.n;
+  document.getElementById('pdCat').textContent=CAT[p.c].n;
+  document.getElementById('pdName').textContent=p.n;
+  document.getElementById('pdDesc').textContent=p.d.join(' ');
+  document.getElementById('pdFacts').innerHTML=p.f.map(function(x){return '<li><span>'+x[0]+'</span>'+x[1]+'</li>'}).join('');
+  var rec=document.getElementById('pdRec');rec.style.display=p.t?'':'none';rec.dataset.k=k;
+  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-proc]');if(b)openProc(b.dataset.proc)});
+document.getElementById('pdX').addEventListener('click',function(){dlg.close()});
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+document.getElementById('pdRec').addEventListener('click',function(){dlg.close();setPlan(this.dataset.k)});
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => observer.observe(el));
-  } else {
-    revealEls.forEach(el => el.classList.add('in-view'));
-  }
+/* Planer oporavka */
+var TICKS=[0,1,7,14,30,90,180,365],TL=['Dan 0','1. dan','7 dana','2 ned.','1 mes.','3 mes.','6 mes.','1 god.'];
+function pos(d){for(var i=1;i<TICKS.length;i++){if(d<=TICKS[i]){return ((i-1)+(d-TICKS[i-1])/(TICKS[i]-TICKS[i-1]))/(TICKS.length-1)*100}}return 100}
+var track=document.getElementById('track'),th='';
+TICKS.forEach(function(t,i){th+='<span class="tick" style="left:'+pos(t)+'%">'+TL[i]+'</span>'});
+track.insertAdjacentHTML('beforeend',th);
+var pick=document.getElementById('pick'),keys=Object.keys(P).filter(function(k){return P[k].t});
+pick.innerHTML=keys.map(function(k){return '<button aria-pressed="false" data-k="'+k+'">'+P[k].n.replace(' – podizanje grudi','')+'</button>'}).join('');
+function setPlan(k){var p=P[k];
+  pick.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k===k)});
+  document.getElementById('plName').textContent=p.n;
+  document.getElementById('plAn').textContent=p.an;document.getElementById('plDur').textContent=p.dur;document.getElementById('plStay').textContent=p.stay;
+  track.querySelectorAll('.ms').forEach(function(m){m.remove()});
+  var fill=document.getElementById('fill');fill.style.transition='none';fill.style.width='0';void fill.offsetWidth;fill.style.transition='';
+  var last=p.t[p.t.length-1][0],mh='';
+  p.t.forEach(function(m,i){var x=pos(m[0]);var cls='ms'+(i%2?' dn':'')+(x<8?' edge-l':'')+(x>88?' edge-r':'');
+    mh+='<div class="'+cls+'" style="left:'+x+'%;--dl:'+(.2+i*.25)+'s"><i></i><span class="t"><b>'+m[1]+'</b>'+m[2]+'</span></div>'});
+  track.insertAdjacentHTML('beforeend',mh);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=pos(last)+'%';track.querySelectorAll('.ms').forEach(function(m){m.classList.add('in')})})});
+  document.getElementById('ml').innerHTML=p.t.map(function(m){return '<li><span>'+m[2]+'</span>'+m[1]+'</li>'}).join('');
+}
+pick.addEventListener('click',function(e){var b=e.target.closest('button');if(b)setPlan(b.dataset.k)});
+setPlan('nos');
+
+/* Reveal, brojači, proces */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var t=e.target;t.classList.add('in');io.unobserve(t);
+  if(t.matches('.stat')){var n=t.querySelector('[data-count]'),to=+n.dataset.count,s=performance.now();(function f(now){var k=Math.min(1,(now-s)/1400);n.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)}
+})},{rootMargin:'0px 0px -10% 0px',threshold:.01});
+document.querySelectorAll('.rv,.rv-img,#steps4').forEach(function(el){io.observe(el)});
+
+/* InMode: korak po korak sa skrolom */
+var skin=document.getElementById('skin');skin.dataset.step='0';
+var steps=[].slice.call(document.querySelectorAll('.step'));
+var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){steps.forEach(function(s){s.classList.toggle('on',s===e.target)});skin.dataset.step=e.target.dataset.s}})},{rootMargin:'-45% 0px -45% 0px'});
+steps.forEach(function(s){io2.observe(s)});
+var intro=document.querySelector('.inm-intro');
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){skin.dataset.step='0';steps.forEach(function(s){s.classList.remove('on')})}})},{rootMargin:'-45% 0px -45% 0px'}).observe(intro);
+
+/* Radno vreme: status po beogradskom vremenu */
+try{var now=new Date(),parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Belgrade',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now),o={};parts.forEach(function(p){o[p.type]=p.value});
+  var wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(o.weekday),hm=+o.hour+ +o.minute/60;
+  var close=wd>=1&&wd<=5?20:wd===6?16:0,open=close&&hm>=8&&hm<close;
+  var st=document.querySelector('#openStatus span'),fo=document.getElementById('fcOpen'),fs=document.getElementById('fcOpenSub');
+  if(open){st.textContent='Otvoreno sada · do '+close+'h';fo.textContent='Otvoreno sada';fs.textContent='Danas radimo do '+close+'h'}
+  else{document.querySelectorAll('#openStatus .dot,#fcDot').forEach(function(d){d.classList.add('off')});var nx=(wd===6&&hm>=16)||wd===0?'u ponedeljak':(hm<8?'danas':'sutra');st.textContent='Zatvoreno · otvaramo '+nx+' u 8h';fo.textContent='Trenutno zatvoreno';fs.textContent='Otvaramo '+nx+' u 8h'}
+  document.querySelectorAll('#hours li').forEach(function(li){var d=li.dataset.d;if(d==='1-5'?wd>=1&&wd<=5:+d===wd)li.classList.add('today')});
+}catch(e){}
+
+/* Header, mobilni meni */
+var hdr=document.getElementById('hdr');addEventListener('scroll',function(){hdr.classList.toggle('sc',scrollY>8)},{passive:true});
+var bg=document.getElementById('burger'),mn=document.getElementById('mnav');
+bg.addEventListener('click',function(){var o=mn.classList.toggle('open');bg.setAttribute('aria-expanded',o)});
+mn.addEventListener('click',function(e){if(e.target.closest('a')){mn.classList.remove('open');bg.setAttribute('aria-expanded','false')}});
+
+/* Blagi 3D nagib hero kompozicije */
+var tilt=document.getElementById('tilt'),rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!rm&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+  var vis=document.querySelector('.hero-vis');
+  vis.addEventListener('mousemove',function(e){var r=vis.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;tilt.style.transform='rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg)'});
+  vis.addEventListener('mouseleave',function(){tilt.style.transform=''});
+}
+})();
 </script>
-
 </body>
 </html>
